@@ -24,9 +24,6 @@ bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^w' backward-kill-word
 
-setopt inc_append_history
-setopt share_history
-
 export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # --------------------------------------
