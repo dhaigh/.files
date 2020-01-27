@@ -1,8 +1,0 @@
-rename-session main
-new -s misc
-attach-session -t main
-rename-window code
-new-window
-rename-window git
-split-window -h
-select-window -t 1

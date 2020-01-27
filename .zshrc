@@ -49,6 +49,19 @@ alias vimrc='vim ~/.vimrc'
 alias vt='vim ~/.tmux.conf'
 alias vz='vim ~/.zshrc'
 
+function tmd() {
+    tmux new-session -d
+    tmux rename-session main
+    tmux rename-window code
+    tmux new-window
+    tmux rename-window git
+    tmux split-window -h
+    tmux select-window -t 1
+    tmux new-session -d
+    tmux rename-session misc
+    tmux attach-session -t main
+}
+
 alias ga='git add'
 alias gaf='FILE=$(echo "$(git ls-files --others --exclude-standard; git diff --name-only)" | fzf -m --height=8) && git add $(echo $FILE)'
 alias gap='ga -p'
