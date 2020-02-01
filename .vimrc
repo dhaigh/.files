@@ -26,7 +26,7 @@ let g:airline#extensions#tabline#enabled = 1 "enable the list of buffers
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "name buffers unambiguously
 
 "fzf
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!*.pyc"'
 
 nnoremap <leader>f :Leaderf rg<cr>
 vnoremap <leader>f y:Leaderf rg <c-r>"<cr>
@@ -36,7 +36,7 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeWinSize=50
+let g:NERDTreeWinSize=55
 nmap <C-]> :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
 
@@ -96,8 +96,12 @@ set autoindent "autoindent
 set smartindent "indent on <cr>
 
 "horizontal navigation
-nnoremap <c-l> 4zl
-nnoremap <c-h> 4zh
+nnoremap <m-h> 4zh
+nnoremap <m-l> 4zl
+
+"window navigation
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
 "paragraph navigation
 noremap <c-k> {
