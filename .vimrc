@@ -35,8 +35,8 @@ vnoremap <leader>f y:Leaderf rg <c-r>"<cr>
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 "NERDTree
-let NERDTreeIgnore = ['\.pyc$']
-let g:NERDTreeWinSize=55
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeWinSize=50
 nmap <C-]> :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
 
@@ -109,10 +109,13 @@ noremap <c-j> }
 
 "remap <esc>
 inoremap <c-c> <esc>
+
+"emacsy bash bindings
 inoremap <c-a> <c-o>^
 inoremap <c-d> <c-o>x
 inoremap <c-e> <c-o>$
 inoremap <c-k> <c-o>C
+inoremap <c-l> <c-o>dw
 
 "discard junk from default register when we use s/S
 nnoremap s "_s
@@ -123,8 +126,15 @@ vnoremap s "_s
 vnoremap p pgvy
 vnoremap P Pgvy
 
-"misc
+"scroll up easier
 nnoremap K <c-y>
+
+"easier alias for $ (conveniently next to 0)
+nnoremap - $
+vnoremap - $
+
+"who uses ? anyway
+nnoremap ? :w<cr>
 
 "wq accidental capitals
 command Wq wq
@@ -137,3 +147,6 @@ command VR e ~/.vimrc
 
 "macvim
 set guifont=Menlo:h15
+
+"misc
+inoremap <leader>p import pdb; pdb.set_trace()<esc>
