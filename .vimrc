@@ -15,9 +15,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'tpope/vim-eunuch'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Yggdroot/LeaderF'
+Plugin 'editorconfig/editorconfig-vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -27,9 +26,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "name buffer
 
 "fzf
 let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!*.pyc"'
-
-nnoremap <leader>f :Leaderf rg<cr>
-vnoremap <leader>f y:Leaderf rg <c-r>"<cr>
 
 "mark .tsx typescript
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
@@ -54,35 +50,16 @@ set wildignore=*.class,.zsh_history,.zcompdump
 set incsearch
 set hlsearch
 set relativenumber
-
-"buffers and tabs
-set hidden
-nmap <tab> :bnext<cr>
-nmap <s-tab> :bprevious<cr>
-nmap <leader>q :bp <bar> bd #<cr>
-nmap <leader>a :ls<cr>
-nmap <c-t> :Files<cr>
-nmap <c-s> :Buffers<cr>
-
-"search current selection
-vnoremap <c-[> y/<c-r>"<cr>Ngv
-
-"clear search
-nmap <c-n> :noh<cr>
-
-"nopaste
-nmap <c-o> :set nopaste<cr>
-
-"disable ex mode
-nmap Q <nop>
+set nojoinspaces "one space instead of two when doing gq
 
 "swap
 set directory=~/.vim/swaps
 
-"theme
-colorscheme luna
+"macvim
+set guifont=Menlo:h15
 
 "colors
+colorscheme luna
 set termguicolors
 
 "tabs
@@ -94,6 +71,30 @@ set tabstop=8 "num spaces rendered by a tab character
 "indentation
 set autoindent "autoindent
 set smartindent "indent on <cr>
+
+"buffers and tabs
+set hidden
+nmap <tab> :bnext<cr>
+nmap <s-tab> :bprevious<cr>
+nmap <leader>q :bp <bar> bd #<cr>
+nmap <leader>h :hide<cr>
+nmap <c-t> :Files<cr>
+nmap <c-s> :Buffers<cr>
+
+"search current selection
+vnoremap <leader>f "zy/<c-r>z<cr>
+
+"clear search
+nmap <c-n> :noh<cr>
+
+"nopaste
+nmap <c-o> :set nopaste<cr>
+
+"disable ex mode
+nmap Q <nop>
+
+"handy shortcut
+nnoremap ! g*
 
 "horizontal navigation
 nnoremap <m-h> 4zh
@@ -116,6 +117,7 @@ inoremap <c-d> <c-o>x
 inoremap <c-e> <c-o>$
 inoremap <c-k> <c-o>C
 inoremap <c-l> <c-o>dw
+inoremap <c-u> <c-o>S
 
 "discard junk from default register when we use s/S
 nnoremap s "_s
@@ -133,9 +135,6 @@ nnoremap K <c-y>
 nnoremap - $
 vnoremap - $
 
-"who uses ? anyway
-nnoremap ? :w<cr>
-
 "wq accidental capitals
 command Wq wq
 command WQ wq
@@ -144,9 +143,15 @@ command Q q
 
 "open vimrc
 command VR e ~/.vimrc
+command VT e ~/.tmux.conf
+command VZ e ~/.zshrc
 
-"macvim
-set guifont=Menlo:h15
+"make things useful
+nnoremap ( F(
+nnoremap ) f)
+vnoremap ( F(
+vnoremap ) f)
 
-"misc
+"common things to type
 inoremap <leader>p import pdb; pdb.set_trace()<esc>
+inoremap <leader>c console.log(
