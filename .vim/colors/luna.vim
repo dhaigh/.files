@@ -180,7 +180,7 @@ hi Pmenu         guifg=#7ca9a9 guibg=#002b2b gui=NONE
 hi PmenuSel      guifg=#002b2b guibg=#fdf6e3 gui=NONE
 hi PmenuSbar     guifg=#002b2b guibg=#002b2b gui=NONE
 hi PmenuThumb    guifg=#002b2b guibg=#002b2b gui=NONE
-hi MatchParen    guifg=#000000 guibg=#ff4040 gui=NONE
+hi MatchParen    guifg=#ff4040 guibg=NONE    gui=NONE
 hi CursorLine    guifg=NONE    guibg=#2e2e2e gui=NONE
 "hi CursorLineNr  guifg=#50c878 guibg=#2e2e2e gui=NONE
 "hi CursorLineNr  guifg=#3eb489 guibg=NONE    gui=NONE

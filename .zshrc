@@ -18,11 +18,13 @@ zstyle ':completion:*' ignored-patterns '*?.pyc' '__pycache__' '*.class' '.zcomp
 
 setopt NO_BEEP
 export TERM=xterm-256color
+export EDITOR=nvim
 export GIT_EDITOR=nvim
 
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--bind ctrl-s:select-all'
@@ -51,9 +53,9 @@ alias vt='vim ~/.tmux.conf'
 alias vz='vim ~/.zshrc'
 alias :q='exit'
 alias :Q='exit'
-alias v='FILE=$(fzf -m --height=8) && vim $FILE'
 alias vim.="vim ."
 alias bf='fzf | xargs bat'
+alias sqlite3='echo "DONT FORGET" && echo "PRAGMA FOREIGN_KEYS = ON;" && echo "!!!!!!!!!!!!!!!!!!!!!!!!!" && echo && echo && sqlite3'
 
 function tms() {
     tmux rename-window code
@@ -126,5 +128,39 @@ function gn() {
 # --------------------------------------
 # project-specific
 alias code='cd ~/Code'
+
+# Clipchamp
+alias cs='cd ~/Code/Clipchamp/clipchamp-stack'
+alias csf='cd ~/Code/Clipchamp/clipchamp-stack/frontend'
+alias acs='cd ~/Code/Clipchamp/another-cc-stack'
+alias acsf='cd ~/Code/Clipchamp/another-cc-stack/frontend'
+alias cui='cd ~/Code/Clipchamp/ui'
+
 alias tb='cd ~/Code/trialbooker && workon tb'
 alias pg='postgres -D /usr/local/var/postgres'
+alias cstf='npx ng test create --test-file'
+alias tc='tmuxinator start topcard'
+
+# # The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/path.zsh.inc'; fi
+
+# # The next line enables shell command completion for gcloud.
+if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/completion.zsh.inc'; fi
+
+# python virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+source virtualenvwrapper.sh
+alias mkvenv='mkvirtualenv -p python2'
+alias d='deactivate'
+
+export CUSTOM_GAE_PROJECT_ID=clipdev-declan-haigh-swjga
+
+# Go
+export GOROOT=/usr/local/go
+export PATH=$GOROOT/bin:$PATH
+
+# npm
+export PATH=$HOME/.npm-global/bin:$PATH
+
+# rvm
+# export PATH="$PATH:$HOME/.rvm/bin"

@@ -32,6 +32,8 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeNaturalSort = 1
+let NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeWinSize=50
 nmap <C-]> :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
@@ -51,6 +53,8 @@ set incsearch
 set hlsearch
 set relativenumber
 set nojoinspaces "one space instead of two when doing gq
+set textwidth=80
+set suffixesadd=.js
 
 "swap
 set directory=~/.vim/swaps
@@ -77,6 +81,7 @@ set hidden
 nmap <tab> :bnext<cr>
 nmap <s-tab> :bprevious<cr>
 nmap <leader>q :bp <bar> bd #<cr>
+nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>
 nmap <c-t> :Files<cr>
 nmap <c-s> :Buffers<cr>
@@ -133,13 +138,15 @@ nnoremap K <c-y>
 
 "easier alias for $ (conveniently next to 0)
 nnoremap - $
-vnoremap - $
+vnoremap - $h
 
 "wq accidental capitals
 command Wq wq
 command WQ wq
 command W w
 command Q q
+command Sort sort
+command S sort
 
 "open vimrc
 command VR e ~/.vimrc
@@ -155,3 +162,7 @@ vnoremap ) f)
 "common things to type
 inoremap <leader>p import pdb; pdb.set_trace()<esc>
 inoremap <leader>c console.log(
+inoremap <leader>d debugger;<esc>
+
+"stop highlighting 'status'
+autocmd BufNewFile,BufRead *.{js,jsx} syntax clear javaScriptMessage
