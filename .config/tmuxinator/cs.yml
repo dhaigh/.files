@@ -1,0 +1,14 @@
+name: main
+root: ~/Code/Clipchamp/clipchamp-stack
+windows:
+    - vim:
+        layout: main-vertical
+        panes:
+            - vim
+            - cd frontend && npm run ng-high-memory serve
+    - git:
+        layout: main-vertical
+    - backend:
+        layout: main-horizontal
+        panes:
+            - cd backend && workon cs && gulp webserver-gae

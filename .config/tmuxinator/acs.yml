@@ -1,0 +1,12 @@
+name: another
+root: ~/Code/Clipchamp/another-cc-stack
+windows:
+    - vim:
+        layout: main-vertical
+        panes:
+            - vim
+    - git:
+        layout: main-vertical
+        panes:
+            - #empty
+            - #empty

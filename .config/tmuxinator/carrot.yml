@@ -1,0 +1,23 @@
+name: carrot
+root: ~/Code/carrot-cards
+windows:
+    - vim:
+        layout: main-vertical
+        # Synchronize all panes of this window, can be enabled before or after the pane commands run.
+        # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
+        # synchronize: after
+        panes:
+            - vim
+    - git:
+        layout: main-vertical
+    - srv:
+        layout: main-horizontal
+        panes:
+            - frontend:
+                - cd frontend
+                - yarn start
+            - backend:
+                - cd backend
+                - workon topcard
+                - python serve_debug.py
+
