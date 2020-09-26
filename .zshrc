@@ -3,12 +3,16 @@ colors
 compinit
 promptinit
 
-function set_prompt {
-PROMPT="%{$fg_bold[green]%}%n@%m%{$reset_color%}%{$fg[black]%}:%{$fg_bold[blue]%}%~%{$fg_bold[magenta]%}%{$reset_color%}
-$1 "
+function set-prompt {
+    V=""
+    if [ -n "$VIRTUAL_ENV" ]; then
+        BN=$(basename $VIRTUAL_ENV)
+        V="($BN) "
+    fi
+    PROMPT="$V%{$fg_bold[green]%}%n@%m%{$reset_color%}%{$fg[black]%}:%{$fg_bold[blue]%}%~%{$fg_bold[magenta]%}%{$reset_color%}"$'\n'"$1 "
 }
 
-set_prompt '$'
+set-prompt '$'
 
 HISTSIZE=100000
 SAVEHIST=100000
@@ -34,7 +38,15 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--bind ctrl-s:select-all'
 
 function zle-line-init zle-keymap-select {
-    set_prompt "${${KEYMAP/vicmd/N}/(main|viins)/\$}"
+    set-prompt "${${KEYMAP/vicmd/N}/(main|viins)/\$}"
+    # case $KEYMAP in
+    # vicmd)
+    #     echo -ne '\e[2 q'
+    #     ;;
+    # viins|main)
+    #     echo -ne '\e[5 q'
+    #     ;;
+    # esac
     zle reset-prompt
 }
 
