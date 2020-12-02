@@ -1,4 +1,4 @@
-name: carrot
+name: z carrot
 root: ~/Code/carrot-cards
 windows:
     - vim:

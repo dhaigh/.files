@@ -14,9 +14,11 @@ Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'junegunn/fzf.vim'
-Plugin 'leafgarland/typescript-vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'yuezk/vim-js'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'HerringtonDarkholme/yats.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -25,10 +27,7 @@ let g:airline#extensions#tabline#enabled = 1 "enable the list of buffers
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "name buffers unambiguously
 
 "fzf
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!*.pyc"'
-
-"mark .tsx typescript
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!*.pyc" -g "!frontend/coverage/*"'
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -73,8 +72,8 @@ set shiftwidth=4 "num spaces with < and >
 set tabstop=8 "num spaces rendered by a tab character
 
 "indentation
-set autoindent "autoindent
-set smartindent "indent on <cr>
+"set autoindent "autoindent
+"set smartindent "indent on <cr>
 
 "buffers and tabs
 set hidden
@@ -98,8 +97,10 @@ nmap <c-o> :set nopaste<cr>
 "disable ex mode
 nmap Q <nop>
 
-"handy shortcut
+"handy shortcuts
 nnoremap ! g*
+vnoremap ! y:Rg <c-r>"<cr>
+vnoremap / <esc>/<c-r>"<cr>
 
 "horizontal navigation
 nnoremap <m-h> 4zh
@@ -153,16 +154,21 @@ command VR e ~/.vimrc
 command VT e ~/.tmux.conf
 command VZ e ~/.zshrc
 
-"make things useful
+"make brackets useful
 nnoremap ( F(
 nnoremap ) f)
 vnoremap ( F(
 vnoremap ) f)
+
+"emacs-inspired zz
+nnoremap <m-l> zz
 
 "common things to type
 inoremap <leader>p import pdb; pdb.set_trace()<esc>
 inoremap <leader>c console.log(
 inoremap <leader>d debugger;<esc>
 
-"stop highlighting 'status'
-autocmd BufNewFile,BufRead *.{js,jsx} syntax clear javaScriptMessage
+"clear whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
+
+autocmd FileType typescriptreact setlocal suffixesadd+=.ts

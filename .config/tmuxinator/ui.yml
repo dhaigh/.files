@@ -1,14 +1,14 @@
-name: another
-root: ~/Code/Clipchamp/another-cc-stack
+name: ui
+root: ~/Code/Clipchamp/ui
 windows:
     - vim:
+        layout: main-vertical
         panes:
             - vim
     - git:
         layout: main-vertical
         panes:
             - #empty
-            - #empty
-    - backend:
+    - storybook:
         panes:
-            - cd backend && workon cs
+            - #empty

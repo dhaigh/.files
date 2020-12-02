@@ -72,6 +72,7 @@ alias vim='nvim'
 alias tmux='tmux -2'
 alias ta='tmux a'
 alias tm='TMUX= tmux'
+alias tx='tmuxinator start'
 alias vimrc='vim ~/.vimrc'
 alias vt='vim ~/.tmux.conf'
 alias vz='vim ~/.zshrc'
@@ -80,30 +81,6 @@ alias :Q='exit'
 alias vim.="vim ."
 alias bf='fzf | xargs bat'
 alias sqlite3='echo "DONT FORGET" && echo "PRAGMA FOREIGN_KEYS = ON;" && echo "!!!!!!!!!!!!!!!!!!!!!!!!!" && echo && echo && sqlite3'
-
-function tms() {
-    tmux rename-window code
-    tmux split-window -h
-    tmux resize-pane -t 1 -x 80
-    tmux new-window
-    tmux rename-window git
-    tmux split-window -h
-    tmux select-window -t 1
-}
-
-function tmd() {
-    # setup main
-    tmux new-session -d
-    tmux rename-session main
-
-    # setup another
-    tmux new-session -d
-    tmux rename-session another
-
-    # swap to main
-    tmux attach-session -t main
-}
-
 alias ga='git add'
 alias gcd='cd $(git rev-parse --show-toplevel)'
 alias gfiles='echo "$(git ls-files --others --exclude-standard ; git diff --name-only)"'
@@ -154,8 +131,12 @@ function gn() {
 alias code='cd ~/Code'
 
 # Clipchamp
-alias cs='cd ~/Code/Clipchamp/clipchamp-stack'
-alias csf='cd ~/Code/Clipchamp/clipchamp-stack/frontend'
+CS=~/Code/Clipchamp/clipchamp-stack
+alias cs="cd $CS"
+
+CSF=$CS/frontend
+alias csf="cd $CSF"
+
 alias acs='cd ~/Code/Clipchamp/another-cc-stack'
 alias acsf='cd ~/Code/Clipchamp/another-cc-stack/frontend'
 alias cui='cd ~/Code/Clipchamp/ui'
@@ -163,7 +144,13 @@ alias cui='cd ~/Code/Clipchamp/ui'
 alias tb='cd ~/Code/trialbooker && workon tb'
 alias pg='postgres -D /usr/local/var/postgres'
 alias cstf='npx ng test create --test-file'
-alias tc='tmuxinator start topcard'
+
+CONFIG=$CSF/libs/superfill/core/jest.config.js
+SETUP=$CSF/libs/superfill/core/src/test-setup.ts
+SFS=$CSF/libs/superfill/core/src
+alias sfs="cd $SFS"
+
+alias sftf="$CSF/node_modules/jest/bin/jest.js --config=$CONFIG --setupTestFrameworkScriptFile=$SETUP"
 
 # # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/path.zsh.inc'; fi
