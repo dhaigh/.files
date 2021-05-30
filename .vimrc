@@ -27,7 +27,13 @@ let g:airline#extensions#tabline#enabled = 1 "enable the list of buffers
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "name buffers unambiguously
 
 "fzf
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!*.pyc" -g "!frontend/coverage/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*"'
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -54,6 +60,7 @@ set relativenumber
 set nojoinspaces "one space instead of two when doing gq
 set textwidth=80
 set suffixesadd=.js
+set clipboard=unnamed "use system clipboard as unnamed register
 
 "swap
 set directory=~/.vim/swaps
@@ -91,16 +98,12 @@ vnoremap <leader>f "zy/<c-r>z<cr>
 "clear search
 nmap <c-n> :noh<cr>
 
-"nopaste
-nmap <c-o> :set nopaste<cr>
-
 "disable ex mode
 nmap Q <nop>
 
 "handy shortcuts
 nnoremap ! g*
 vnoremap ! y:Rg <c-r>"<cr>
-vnoremap / <esc>/<c-r>"<cr>
 
 "horizontal navigation
 nnoremap <m-h> 4zh
@@ -163,12 +166,19 @@ vnoremap ) f)
 "emacs-inspired zz
 nnoremap <m-l> zz
 
+"feels nicer to have # and * next to each other. * is hard to reach
+nnoremap $ *
+
 "common things to type
 inoremap <leader>p import pdb; pdb.set_trace()<esc>
+inoremap <leader>r println!("{}",
 inoremap <leader>c console.log(
 inoremap <leader>d debugger;<esc>
+inoremap <leader>e // eslint-disable-next-line<esc>
 
 "clear whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
 autocmd FileType typescriptreact setlocal suffixesadd+=.ts
+
+nnoremap T :tabn<cr>

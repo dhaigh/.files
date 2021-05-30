@@ -15,7 +15,6 @@ windows:
         panes:
             - frontend:
                 - cd frontend
-                - yarn start
             - backend:
                 - cd backend
                 - workon topcard

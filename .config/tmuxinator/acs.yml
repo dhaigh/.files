@@ -11,4 +11,4 @@ windows:
             - #empty
     - backend:
         panes:
-            - cd backend && workon cs
+            - . .venv39/bin/activate && cd backend

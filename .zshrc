@@ -9,7 +9,13 @@ function set-prompt {
         BN=$(basename $VIRTUAL_ENV)
         V="($BN) "
     fi
-    PROMPT="$V%{$fg_bold[green]%}%n@%m%{$reset_color%}%{$fg[black]%}:%{$fg_bold[blue]%}%~%{$fg_bold[magenta]%}%{$reset_color%}"$'\n'"$1 "
+
+    BR=$(gbn 2> /dev/null)
+    if [ -n "$BR" ]; then
+        BR="%{$fg_bold[magenta]%}$BR "
+    fi
+
+    PROMPT="$V$BR%{$fg_bold[green]%}%n@%m%{$reset_color%}%{$fg[black]%}:%{$fg_bold[blue]%}%~%{$fg_bold[magenta]%}%{$reset_color%}"$'\n'"$1 "
 }
 
 set-prompt '$'
@@ -91,7 +97,7 @@ alias ga.='ga .'
 alias ga.ds='ga . && gds'
 alias ga.st='ga . && gst'
 alias gb='git branch'
-alias gbdm='gb --merged | grep -v "\(^\*\)\|\(^  master$\)" | xargs git branch -d'
+alias gbdm='git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D'
 alias gbn='git rev-parse --abbrev-ref HEAD'
 alias gc='git commit'
 alias gcp='git cherry-pick'
@@ -126,9 +132,15 @@ function gn() {
     git checkout -b $1 origin/master
 }
 
+alias s='yarn start'
+
 # --------------------------------------
 # project-specific
 alias code='cd ~/Code'
+
+# Carrots
+CC=~/Code/carrot-cards
+alias ccf="cd $CC/frontend"
 
 # Clipchamp
 CS=~/Code/Clipchamp/clipchamp-stack
@@ -161,7 +173,6 @@ if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users
 # python virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
-alias mkvenv='mkvirtualenv -p python2'
 alias d='deactivate'
 
 export CUSTOM_GAE_PROJECT_ID=clipdev-declan-haigh-swjga

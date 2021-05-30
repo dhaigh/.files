@@ -1,3 +1,4 @@
 key_bindings:
-    - { key: A, mods: Control, chars: "" }
-    - { key: E, mods: Control, chars: "" }
+    # - { key: A, mods: Control, chars: "" }
+    # - { key: E, mods: Control, chars: "" }
+    - { key: Period,   mods: Alt,       chars: "\x1b."                       }

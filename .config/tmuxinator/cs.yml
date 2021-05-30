@@ -5,13 +5,13 @@ windows:
         layout: main-vertical
         panes:
             - vim
-            - cd frontend && yarn ng-high-memory serve
+            - cd frontend
     - git:
         layout: main-vertical
     - backend:
         layout: main-horizontal
         panes:
-            - cd backend && workon cs && gulp webserver-gae
+            - . .venv39/bin/activate && cd backend
     - storybook:
         panes:
             - cd frontend
