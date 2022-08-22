@@ -169,7 +169,14 @@ if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/
 # # The next line enables shell command completion for gcloud.
 if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/completion.zsh.inc'; fi
 
-# python virtualenv
+# Python
+alias python='python3'
+alias pip='pip3'
+
+# Python virtualenv
+export PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
+export PATH="/Users/deco/Library/Python/3.10/bin:${PATH}"
+export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
 alias d='deactivate'
