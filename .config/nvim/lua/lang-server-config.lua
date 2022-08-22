@@ -31,16 +31,19 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local ts_utils = require("nvim-lsp-ts-utils")
-require("lspconfig").tsserver.setup({
-    on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-        ts_utils.setup({})
-        ts_utils.setup_client(client)
-        buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
-        on_attach(client, bufnr)
-    end,
+require("typescript").setup({
+    disable_commands = false,
+    debug = true,
+    server = {
+        on_attach = function(client, bufnr)
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+            ts_utils.setup({})
+            ts_utils.setup_client(client)
+            buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
+            on_attach(client, bufnr)
+        end,
+    }
 })
 
 local null_ls = require("null-ls")
