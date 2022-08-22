@@ -17,6 +17,6 @@ windows:
                 - cd frontend
             - backend:
                 - cd backend
-                - workon topcard
+                - workon carrot
                 - python serve_debug.py
 

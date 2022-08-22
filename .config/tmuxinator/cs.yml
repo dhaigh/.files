@@ -1,17 +1,7 @@
-name: main
-root: ~/Code/Clipchamp/clipchamp-stack
+name: CC-main
+root: ~/Code/Clipchamp/ms/clipchamp-stack
 windows:
     - vim:
-        layout: main-vertical
         panes:
             - vim
-            - cd frontend
     - git:
-        layout: main-vertical
-    - backend:
-        layout: main-horizontal
-        panes:
-            - . .venv39/bin/activate && cd backend
-    - storybook:
-        panes:
-            - cd frontend

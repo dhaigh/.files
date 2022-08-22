@@ -39,6 +39,8 @@ bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+bindkey '^?' backward-delete-char
+bindkey '\e.' insert-last-word
 
 export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_DEFAULT_OPTS='--bind ctrl-s:select-all'
@@ -95,6 +97,7 @@ alias gap='ga -p'
 alias gapf='FILE=$(gfiles | fzf --height=8) && gap $FILE'
 alias ga.='ga .'
 alias ga.ds='ga . && gds'
+alias gad='ga.ds'
 alias ga.st='ga . && gst'
 alias gb='git branch'
 alias gbdm='git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D'
@@ -143,26 +146,22 @@ CC=~/Code/carrot-cards
 alias ccf="cd $CC/frontend"
 
 # Clipchamp
-CS=~/Code/Clipchamp/clipchamp-stack
-alias cs="cd $CS"
-
-CSF=$CS/frontend
-alias csf="cd $CSF"
-
-alias acs='cd ~/Code/Clipchamp/another-cc-stack'
-alias acsf='cd ~/Code/Clipchamp/another-cc-stack/frontend'
-alias cui='cd ~/Code/Clipchamp/ui'
+alias cs='cd ~/Code/Clipchamp/ms/clipchamp-stack'
+alias csf='cd ~/Code/Clipchamp/ms/clipchamp-stack/apps/create'
+alias csb='cd ~/Code/Clipchamp/ms/clipchamp-stack/apps/business'
+alias acs='cd ~/Code/Clipchamp/ms/another-clipchamp-stack'
+alias acsf='cd ~/Code/Clipchamp/ms/another-clipchamp-stack/apps/create'
+alias ycs='cd ~/Code/Clipchamp/ms/yet-another-clipchamp-stack'
+alias ycsf='cd ~/Code/Clipchamp/ms/yet-another-clipchamp-stack/apps/create'
+alias ms='cd ~/Code/Clipchamp/ms'
 
 alias tb='cd ~/Code/trialbooker && workon tb'
-alias pg='postgres -D /usr/local/var/postgres'
-alias cstf='npx ng test create --test-file'
+alias pg='postgres -D /usr/local/var/postgresql@11'
+alias ago='cd ~/Code/agoer/agoer'
 
-CONFIG=$CSF/libs/superfill/core/jest.config.js
-SETUP=$CSF/libs/superfill/core/src/test-setup.ts
-SFS=$CSF/libs/superfill/core/src
-alias sfs="cd $SFS"
-
-alias sftf="$CSF/node_modules/jest/bin/jest.js --config=$CONFIG --setupTestFrameworkScriptFile=$SETUP"
+function cstf {
+    yarn test $1 --watch
+}
 
 # # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/path.zsh.inc'; fi
@@ -185,4 +184,6 @@ export PATH=$GOROOT/bin:$PATH
 export PATH=$HOME/.npm-global/bin:$PATH
 
 # rvm
-# export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin
+
+export RUSH_PNPM_STORE_PATH=~/.rush-pnpm

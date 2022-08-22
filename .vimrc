@@ -10,7 +10,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-commentary'
-Plugin 'bling/vim-airline'
+Plugin 'nvim-lualine/lualine.nvim'
 Plugin 'tpope/vim-surround'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'junegunn/fzf.vim'
@@ -19,19 +19,25 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'yuezk/vim-js'
 Plugin 'maxmellon/vim-jsx-pretty'
 Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'neovim/nvim-lspconfig'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'jose-elias-alvarez/null-ls.nvim'
+Plugin 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plugin 'akinsho/bufferline.nvim'
+Plugin 'EdenEast/nightfox.nvim'
 call vundle#end()
 filetype plugin indent on
 
-"airline
-let g:airline#extensions#tabline#enabled = 1 "enable the list of buffers
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved' "name buffers unambiguously
+let g:vundle_default_git_proto = 'ssh'
+
+lua require('lang-server-config')
 
 "fzf
-let $FZF_DEFAULT_COMMAND = 'rg --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*"'
+let $FZF_DEFAULT_COMMAND = 'rg --fixed-strings --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*" -g "!.DS_Store"'
 
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --hidden --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   'rg --fixed-strings --hidden --column --line-number --no-heading --color=always --smart-case -g "!.git/*" -- '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
 
@@ -40,7 +46,6 @@ let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let NERDTreeNaturalSort = 1
 let NERDTreeCaseSensitiveSort = 1
 let g:NERDTreeWinSize=50
-nmap <C-]> :NERDTreeToggle<cr>
 nmap <leader>r :NERDTreeFind<cr>
 
 "general
@@ -69,7 +74,7 @@ set directory=~/.vim/swaps
 set guifont=Menlo:h15
 
 "colors
-colorscheme luna
+colorscheme nightfox
 set termguicolors
 
 "tabs
@@ -84,16 +89,19 @@ set tabstop=8 "num spaces rendered by a tab character
 
 "buffers and tabs
 set hidden
-nmap <tab> :bnext<cr>
-nmap <s-tab> :bprevious<cr>
+nmap <C-]> :bnext<cr>
+nmap <C-[> :bprevious<cr>
 nmap <leader>q :bp <bar> bd #<cr>
 nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>
 nmap <c-t> :Files<cr>
-nmap <c-s> :Buffers<cr>
+nmap <c-space> :Buffers<cr>
 
 "search current selection
 vnoremap <leader>f "zy/<c-r>z<cr>
+
+"open ts modules
+nnoremap <c-p> 0f'lgf:noh<cr>
 
 "clear search
 nmap <c-n> :noh<cr>
@@ -120,6 +128,11 @@ noremap <c-j> }
 "remap <esc>
 inoremap <c-c> <esc>
 
+"make c not yank
+nnoremap c "_c
+nnoremap C "_C
+
+
 "emacsy bash bindings
 inoremap <c-a> <c-o>^
 inoremap <c-d> <c-o>x
@@ -137,9 +150,6 @@ vnoremap s "_s
 vnoremap p pgvy
 vnoremap P Pgvy
 
-"scroll up easier
-nnoremap K <c-y>
-
 "easier alias for $ (conveniently next to 0)
 nnoremap - $
 vnoremap - $h
@@ -148,6 +158,7 @@ vnoremap - $h
 command Wq wq
 command WQ wq
 command W w
+command QQ qa!
 command Q q
 command Sort sort
 command S sort
@@ -156,6 +167,7 @@ command S sort
 command VR e ~/.vimrc
 command VT e ~/.tmux.conf
 command VZ e ~/.zshrc
+command VL e ~/.config/nvim/lua/lang-server-config.lua
 
 "make brackets useful
 nnoremap ( F(
@@ -169,6 +181,12 @@ nnoremap <m-l> zz
 "feels nicer to have # and * next to each other. * is hard to reach
 nnoremap $ *
 
+"swap between files
+nnoremap <leader><leader> <c-^>
+
+"next tab
+nnoremap T :tabn<cr>
+
 "common things to type
 inoremap <leader>p import pdb; pdb.set_trace()<esc>
 inoremap <leader>r println!("{}",
@@ -179,6 +197,14 @@ inoremap <leader>e // eslint-disable-next-line<esc>
 "clear whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-autocmd FileType typescriptreact setlocal suffixesadd+=.ts
+autocmd FileType typescript setlocal suffixesadd+=.ts,.tsx,.d.ts
+autocmd FileType typescriptreact setlocal suffixesadd+=.ts,.tsx,.d.ts
 
-nnoremap T :tabn<cr>
+"project-specific
+set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
+
+autocmd FileType typescript setlocal suffixesadd+=.ts
+set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
+
+"eslint_d
+nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F

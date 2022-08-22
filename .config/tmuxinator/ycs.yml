@@ -1,0 +1,7 @@
+name: CC-yet
+root: ~/Code/Clipchamp/ms/yet-another-clipchamp-stack
+windows:
+    - vim:
+        panes:
+            - vim
+    - git:

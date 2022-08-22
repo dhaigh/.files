@@ -2,3 +2,11 @@ key_bindings:
     # - { key: A, mods: Control, chars: "" }
     # - { key: E, mods: Control, chars: "" }
     - { key: Period,   mods: Alt,       chars: "\x1b."                       }
+    - { key: B,        mods: Command,   chars: "\x1bb"                       }
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+
+selection:
+  save_to_clipboard: true
+

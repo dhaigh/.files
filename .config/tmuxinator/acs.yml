@@ -1,14 +1,7 @@
-name: another
-root: ~/Code/Clipchamp/another-cc-stack
+name: CC-another
+root: ~/Code/Clipchamp/ms/another-clipchamp-stack
 windows:
     - vim:
         panes:
             - vim
     - git:
-        layout: main-vertical
-        panes:
-            - #empty
-            - #empty
-    - backend:
-        panes:
-            - . .venv39/bin/activate && cd backend

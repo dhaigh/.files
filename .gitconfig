@@ -1,0 +1,19 @@
+[user]
+    name = Declan Haigh
+    email = declan@declanhaigh.com
+[commit]
+    gpgsign = true
+[core]
+    pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+[url "git@github.com:"]
+    insteadOf = "https://github.com/"
+    insteadOf = "http://github.com/"
+    insteadOf = "gh:"
+    insteadOf = "gh://"
+
