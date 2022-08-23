@@ -1,5 +1,5 @@
 name: CC-yet
-root: ~/Code/Clipchamp/ms/yet-another-clipchamp-stack
+root: ~/Code/ms/yet-another-clipchamp-stack
 windows:
     - vim:
         panes:

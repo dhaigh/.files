@@ -1,5 +1,5 @@
 name: CC-main
-root: ~/Code/Clipchamp/ms/clipchamp-stack
+root: ~/Code/ms/clipchamp-stack
 windows:
     - vim:
         panes:
