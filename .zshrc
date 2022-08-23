@@ -145,15 +145,15 @@ alias code='cd ~/Code'
 CC=~/Code/carrot-cards
 alias ccf="cd $CC/frontend"
 
-# Clipchamp
-alias cs='cd ~/Code/Clipchamp/ms/clipchamp-stack'
-alias csf='cd ~/Code/Clipchamp/ms/clipchamp-stack/apps/create'
-alias csb='cd ~/Code/Clipchamp/ms/clipchamp-stack/apps/business'
-alias acs='cd ~/Code/Clipchamp/ms/another-clipchamp-stack'
-alias acsf='cd ~/Code/Clipchamp/ms/another-clipchamp-stack/apps/create'
-alias ycs='cd ~/Code/Clipchamp/ms/yet-another-clipchamp-stack'
-alias ycsf='cd ~/Code/Clipchamp/ms/yet-another-clipchamp-stack/apps/create'
-alias ms='cd ~/Code/Clipchamp/ms'
+# ms
+alias cs='cd ~/Code/ms/clipchamp-stack'
+alias csf='cd ~/Code/ms/clipchamp-stack/apps/create'
+alias csb='cd ~/Code/ms/clipchamp-stack/apps/business'
+alias acs='cd ~/Code/ms/another-clipchamp-stack'
+alias acsf='cd ~/Code/ms/another-clipchamp-stack/apps/create'
+alias ycs='cd ~/Code/ms/yet-another-clipchamp-stack'
+alias ycsf='cd ~/Code/ms/yet-another-clipchamp-stack/apps/create'
+alias ms='cd ~/Code/ms'
 
 alias tb='cd ~/Code/trialbooker && workon tb'
 alias pg='postgres -D /usr/local/var/postgresql@11'
@@ -169,14 +169,10 @@ if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/
 # # The next line enables shell command completion for gcloud.
 if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Python
-alias python='python3'
-alias pip='pip3'
-
 # Python virtualenv
-export PATH="/Library/Frameworks/Python.framework/Versions/3.10/bin:${PATH}"
-export PATH="/Users/deco/Library/Python/3.10/bin:${PATH}"
-export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
+export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
+export PATH="/Users/deco/Library/Python/3.9/bin:${PATH}"
+export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
 alias d='deactivate'
