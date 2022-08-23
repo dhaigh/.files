@@ -1,27 +1,28 @@
 #!/bin/sh
 
 # make directories
-mkdir -pv ~/.config
-mkdir -pv ~/.config/nvim
-mkdir -pv ~/.config/alacritty
+mkdir -v ~/.config
+mkdir -v ~/.config/nvim
+mkdir -v ~/.config/nvim/lua
+mkdir -v ~/.config/alacritty
+mkdir -v ~/.config/tmuxinator
 
-# make symlinks for dotfiles
-[ ! -e ~/.config/nvim/init.vim ] && \
-    ln -s ~/.files/.config/nvim/init.vim ~/.config/nvim/init.vim
+# neovim
+ln -sw ~/.files/.config/nvim/init.vim ~/.config/nvim
+ln -sw ~/.files/.config/nvim/lua/* ~/.config/nvim/lua
 
-[ ! -e ~/.config/nvim/lua ] && \
-    ln -s ~/.files/.config/nvim/lua ~/.config/nvim/lua
+# alacritty
+ln -sw ~/.files/.config/alacritty/alacritty.yml ~/.config/alacritty
 
-[ ! -e ~/.config/alacritty/alacritty.yml ] && \
-    ln -s ~/.files/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+# tmuxinator
+ln -sw ~/.files/.config/tmuxinator/*.yml ~/.config/tmuxinator
 
-[ ! -e ~/.tmux.conf ] && \
-    ln -s ~/.files/.tmux.conf ~/.tmux.conf
+# tmux
+ln -sw ~/.files/.tmux.conf ~
 
-[ ! -e ~/.zshrc ] && \
-    ln -s ~/.files/.zshrc ~/.zshrc
-
-# install tmux plugins
 [ ! -e ~/.tmux/plugins/tpm ] &&
    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm &&
     ~/.tmux/plugins/tpm/bindings/install_plugins
+
+# zsh
+ln -sw ~/.files/.zshrc ~
