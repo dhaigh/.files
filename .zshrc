@@ -138,12 +138,9 @@ function gn() {
 alias s='yarn start'
 
 # --------------------------------------
-# project-specific
 alias code='cd ~/Code'
-
-# Carrots
-CC=~/Code/carrot-cards
-alias ccf="cd $CC/frontend"
+alias .config='cd ~/.config'
+alias .files='cd ~/.files'
 
 # ms
 alias cs='cd ~/Code/ms/clipchamp-stack'
@@ -155,9 +152,7 @@ alias ycs='cd ~/Code/ms/yet-another-clipchamp-stack'
 alias ycsf='cd ~/Code/ms/yet-another-clipchamp-stack/apps/create'
 alias ms='cd ~/Code/ms'
 
-alias tb='cd ~/Code/trialbooker && workon tb'
 alias pg='postgres -D /usr/local/var/postgresql@11'
-alias ago='cd ~/Code/agoer/agoer'
 
 function cstf {
     yarn test $1 --watch

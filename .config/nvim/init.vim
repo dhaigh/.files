@@ -1,8 +1,5 @@
 set nocompatible
 
-"disable this fkn autocomplete thing
-"let g:omni_sql_no_default_maps = 1
-
 call plug#begin()
 Plug 'tpope/vim-commentary'
 Plug 'nvim-lualine/lualine.nvim'
@@ -24,6 +21,7 @@ Plug 'jose-elias-alvarez/typescript.nvim'
 call plug#end()
 
 lua require('lang-server-config')
+lua require('theming')
 
 "fzf
 let $FZF_DEFAULT_COMMAND = 'rg --fixed-strings --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*" -g "!.DS_Store"'
@@ -62,13 +60,6 @@ set clipboard=unnamed "use system clipboard as unnamed register
 "swap
 set directory=~/.config/nvim/swaps
 
-"macvim
-set guifont=Menlo:h15
-
-"colors
-colorscheme nightfox
-set termguicolors
-
 "tabs
 set expandtab "<tab> produces spaces
 set softtabstop=4 "num spaces with <tab>
@@ -81,8 +72,8 @@ set tabstop=8 "num spaces rendered by a tab character
 
 "buffers and tabs
 set hidden
-nmap <C-]> :bnext<cr>
-nmap <C-[> :bprevious<cr>
+nmap <tab> :bnext<cr>
+nmap <s-tab> :bprevious<cr>
 nmap <leader>q :bp <bar> bd #<cr>
 nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>

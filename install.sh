@@ -3,19 +3,19 @@
 # make directories
 mkdir -v ~/.config
 mkdir -v ~/.config/nvim
-mkdir -v ~/.config/nvim/lua
-mkdir -v ~/.config/alacritty
-mkdir -v ~/.config/tmuxinator
 
 # neovim
 ln -sw ~/.files/.config/nvim/init.vim ~/.config/nvim
-ln -sw ~/.files/.config/nvim/lua/* ~/.config/nvim/lua
+ln -sw ~/.files/.config/nvim/lua ~/.config/nvim
 
 # alacritty
-ln -sw ~/.files/.config/alacritty/alacritty.yml ~/.config/alacritty
+ln -sw ~/.files/.config/alacritty ~/.config
 
 # tmuxinator
-ln -sw ~/.files/.config/tmuxinator/*.yml ~/.config/tmuxinator
+ln -sw ~/.files/.config/tmuxinator ~/.config
+
+# stylua
+ln -sw ~/.files/stylua.toml ~/.config
 
 # tmux
 ln -sw ~/.files/.tmux.conf ~
@@ -26,3 +26,6 @@ ln -sw ~/.files/.tmux.conf ~
 
 # zsh
 ln -sw ~/.files/.zshrc ~
+
+# other things to do:
+# cargo install stylua

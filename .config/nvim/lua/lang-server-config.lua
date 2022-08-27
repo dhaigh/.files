@@ -19,6 +19,7 @@ local on_attach = function(client, bufnr)
     vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
     buf_map(bufnr, "n", "gd", ":LspDef<CR>")
     buf_map(bufnr, "n", "gr", ":LspRename<CR>")
+    buf_map(bufnr, "n", "ge", ":LspRefs<CR>")
     buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
     buf_map(bufnr, "n", "K", ":LspHover<CR>")
     buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
@@ -38,12 +39,10 @@ require("typescript").setup({
         on_attach = function(client, bufnr)
             client.resolved_capabilities.document_formatting = false
             client.resolved_capabilities.document_range_formatting = false
-            ts_utils.setup({})
-            ts_utils.setup_client(client)
             buf_map(bufnr, "n", "go", ":TSLspImportAll<CR>")
             on_attach(client, bufnr)
         end,
-    }
+    },
 })
 
 local null_ls = require("null-ls")
@@ -56,32 +55,4 @@ null_ls.setup({
         null_ls.builtins.formatting.rustfmt,
     },
     on_attach = on_attach,
-})
-
-require("lualine").setup({
-    -- options = { theme = "OceanicNext" },
-    sections = {
-        lualine_c = {
-            {
-                "filename",
-                file_status = true, -- Displays file status (readonly status, modified status)
-                path = 2, -- Absolute path
-                symbols = {
-                    modified = "[+]", -- Text to show when the file is fmodified.
-                    readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
-                    unnamed = "[No Name]", -- Text to show for unnamed buffers.
-                },
-            },
-        },
-    },
-})
-
-vim.opt.termguicolors = true
-require("bufferline").setup({
-    options = {
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        max_name_length = 25,
-        separator_style = "slant",
-    },
 })
