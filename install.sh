@@ -27,5 +27,18 @@ ln -sw ~/.files/.tmux.conf ~
 # zsh
 ln -sw ~/.files/.zshrc ~
 
+# ------------------------------------------------------------------------------
 # other things to do:
+# ------------------------------------------------------------------------------
+
+# make sure ~/.npmrc includes:
+# prefix=/Users/deco/.npm-global
+
+# stylua: https://github.com/johnnymorganz/stylua
 # cargo install stylua
+
+# ts language server: https://github.com/typescript-language-server/typescript-language-server
+# npm install -g typescript-language-server typescript
+
+# eslint_d: https://github.com/mantoni/eslint_d.js
+# npm install -g eslint_d

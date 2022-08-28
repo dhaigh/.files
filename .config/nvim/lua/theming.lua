@@ -1,5 +1,5 @@
 -- lualine = the stuff at the bottom
-require("lualine").setup({
+require("lualine").setup {
     sections = {
         lualine_c = {
             {
@@ -28,16 +28,16 @@ require("lualine").setup({
             },
         },
     },
-})
+}
 
 -- This doesn't seem to be needed:
 -- vim.opt.termguicolors = true
 
-vim.cmd("colorscheme nightfox")
-local palette = require("nightfox.palette").load("duskfox")
+vim.cmd "colorscheme nightfox"
+local palette = require("nightfox.palette").load "duskfox"
 
 -- bufferline = tabs for buffers at the top
-require("bufferline").setup({
+require("bufferline").setup {
     options = {
         show_buffer_close_icons = false,
         show_close_icon = false,
@@ -63,4 +63,4 @@ require("bufferline").setup({
             bg = normal_bg,
         },
     },
-})
+}

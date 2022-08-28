@@ -1,25 +1,4 @@
-set nocompatible
-
-call plug#begin()
-Plug 'tpope/vim-commentary'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'tpope/vim-surround'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'akinsho/bufferline.nvim'
-Plug 'EdenEast/nightfox.nvim'
-Plug 'jose-elias-alvarez/typescript.nvim'
-call plug#end()
-
+lua require('plugins')
 lua require('lang-server-config')
 lua require('theming')
 
@@ -191,3 +170,6 @@ set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
 
 "eslint_d
 nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
+
+".vim comment string for vim-commentary
+autocmd FileType vim setlocal commentstring=\"%s
