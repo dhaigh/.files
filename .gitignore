@@ -1,5 +1,2 @@
 .netrwhist
-
-# these have their own .gitignore
-#/.vim/bundle/*
-#/.vim/swaps/*
+/.config/nvim/swaps/
