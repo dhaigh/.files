@@ -41,4 +41,7 @@ require("packer").startup(function(use)
 
     -- integration with typescript-language-server
     use "jose-elias-alvarez/typescript.nvim"
+
+    -- icons for nerdtree
+    use "ryanoasis/vim-devicons"
 end)
