@@ -1,4 +1,13 @@
-require("packer").startup(function(use)
+local packer = require "packer"
+
+packer.init {
+    git = {
+        clone_timeout = 180,
+    },
+}
+
+packer.startup(function(use)
+    -- packer, need to bootstrap this with a manual git clone on a fresh machine
     use "wbthomason/packer.nvim"
 
     -- comment stuff with gc (VISUAL)
@@ -10,9 +19,16 @@ require("packer").startup(function(use)
     -- split lines with gS (NORMAL)
     use "AndrewRadev/splitjoin.vim"
 
-    -- fuzzy finding (yes both are needed)
-    use "junegunn/fzf"
-    use "junegunn/fzf.vim"
+    -- better syntax highlighting, used by telescope
+    use "nvim-treesitter/nvim-treesitter"
+    use "tree-sitter/tree-sitter-typescript"
+
+    -- telescope
+    use {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        requires = { { "nvim-lua/plenary.nvim" } },
+    }
 
     -- sidebar file tree
     use "scrooloose/nerdtree"
@@ -28,9 +44,11 @@ require("packer").startup(function(use)
     -- lsp stuff
     use "neovim/nvim-lspconfig"
 
-    -- more lsp stuff (null-ls depends on plenary.nvim)
-    use "nvim-lua/plenary.nvim"
-    use "jose-elias-alvarez/null-ls.nvim"
+    -- more lsp stuff
+    use {
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = { { "nvim-lua/plenary.nvim" } },
+    }
 
     -- themey stuff
     use "nvim-lualine/lualine.nvim"
@@ -44,4 +62,10 @@ require("packer").startup(function(use)
 
     -- icons for nerdtree
     use "ryanoasis/vim-devicons"
+
+    -- completion (setup in completion.lua)
+    use "hrsh7th/nvim-cmp"
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/vim-vsnip"
+    use "hrsh7th/cmp-vsnip"
 end)

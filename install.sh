@@ -42,3 +42,6 @@ ln -sw ~/.files/.zshrc ~
 
 # eslint_d: https://github.com/mantoni/eslint_d.js
 # npm install -g eslint_d
+
+# fd: https://github.com/sharkdp/fd
+# brew install fd

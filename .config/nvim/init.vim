@@ -1,5 +1,5 @@
 lua require('plugins')
-lua require('lang-server-config')
+lua require('lsp')
 lua require('theming')
 
 "fzf
@@ -56,8 +56,13 @@ nmap <s-tab> :bprevious<cr>
 nmap <leader>q :bp <bar> bd #<cr>
 nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>
-nmap <c-t> :Files<cr>
 nmap <c-space> :Buffers<cr>
+
+"telescope
+nnoremap <c-t> <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 "search current selection
 vnoremap <leader>f "zy/<c-r>z<cr>
@@ -173,3 +178,7 @@ nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`
 
 ".vim comment string for vim-commentary
 autocmd FileType vim setlocal commentstring=\"%s
+
+"If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
