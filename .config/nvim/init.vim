@@ -1,6 +1,7 @@
 lua require('plugins')
 lua require('lsp')
 lua require('theming')
+lua require('telescope-setup')
 
 "fzf
 let $FZF_DEFAULT_COMMAND = 'rg --fixed-strings --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*" -g "!.DS_Store"'
