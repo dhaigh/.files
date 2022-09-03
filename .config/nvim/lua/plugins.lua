@@ -29,6 +29,7 @@ packer.startup(function(use)
         branch = "0.1.x",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
+    use "nvim-telescope/telescope-live-grep-args.nvim"
 
     -- sidebar file tree
     use "scrooloose/nerdtree"
@@ -38,8 +39,8 @@ packer.startup(function(use)
 
     -- ts/js syntax highlighting
     -- use 'yuezk/vim-js'
-    -- use 'maxmellon/vim-jsx-pretty'
-    -- use 'HerringtonDarkholme/yats.vim'
+    use "maxmellon/vim-jsx-pretty"
+    -- use "HerringtonDarkholme/yats.vim"
 
     -- lsp stuff
     use "neovim/nvim-lspconfig"

@@ -3,14 +3,6 @@ lua require('lsp')
 lua require('theming')
 lua require('telescope-setup')
 
-"fzf
-let $FZF_DEFAULT_COMMAND = 'rg --fixed-strings --files --no-ignore-vcs --hidden -g "!node_modules/" -g "!.git/*" -g "!**/.git/*" -g "!*.pyc" -g "!frontend/coverage/*" -g "!target/debug/*" -g "!.DS_Store"'
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --fixed-strings --hidden --column --line-number --no-heading --color=always --smart-case -g "!.git/*" -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 let NERDTreeNaturalSort = 1
@@ -57,13 +49,6 @@ nmap <s-tab> :bprevious<cr>
 nmap <leader>q :bp <bar> bd #<cr>
 nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>
-nmap <c-space> :Buffers<cr>
-
-"telescope
-nnoremap <c-t> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 "search current selection
 vnoremap <leader>f "zy/<c-r>z<cr>
@@ -79,7 +64,6 @@ nmap Q <nop>
 
 "handy shortcuts
 nnoremap ! g*
-vnoremap ! y:Rg <c-r>"<cr>
 
 "horizontal navigation
 nnoremap <m-h> 4zh
@@ -135,7 +119,6 @@ command S sort
 command VR e ~/.config/nvim/init.vim
 command VT e ~/.tmux.conf
 command VZ e ~/.zshrc
-command VL e ~/.config/nvim/lua/lang-server-config.lua
 
 "make brackets useful
 nnoremap ( F(
