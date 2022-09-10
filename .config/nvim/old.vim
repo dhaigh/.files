@@ -2,6 +2,7 @@ lua require('plugins')
 lua require('lsp')
 lua require('theming')
 lua require('telescope-setup')
+lua require('general')
 
 "NERDTree
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -117,6 +118,7 @@ command S sort
 
 "open vimrc
 command VR e ~/.config/nvim/init.vim
+command VL e ~/.config/nvim/lua/lsp.lua
 command VT e ~/.tmux.conf
 command VZ e ~/.zshrc
 
@@ -148,17 +150,17 @@ inoremap <leader>e // eslint-disable-next-line<esc>
 "clear whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
-autocmd FileType typescript setlocal suffixesadd+=.ts,.tsx,.d.ts
-autocmd FileType typescriptreact setlocal suffixesadd+=.ts,.tsx,.d.ts
+"autocmd FileType typescript setlocal suffixesadd+=.ts,.tsx,.d.ts
+"autocmd FileType typescriptreact setlocal suffixesadd+=.ts,.tsx,.d.ts
 
-"project-specific
-set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
+""project-specific
+"set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
 
-autocmd FileType typescript setlocal suffixesadd+=.ts
-set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
+"autocmd FileType typescript setlocal suffixesadd+=.ts
+"set includeexpr=substitute(v:fname,'clipchamp_stack/','','')
 
-"eslint_d
-nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
+""eslint_d
+"nnoremap <leader>f mF:%!eslint_d --stdin --fix-to-stdout --stdin-filename %<CR>`F
 
 ".vim comment string for vim-commentary
 autocmd FileType vim setlocal commentstring=\"%s

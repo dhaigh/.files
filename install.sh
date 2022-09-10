@@ -5,7 +5,7 @@ mkdir -v ~/.config
 mkdir -v ~/.config/nvim
 
 # neovim
-ln -sw ~/.files/.config/nvim/init.vim ~/.config/nvim
+ln -sw ~/.files/.config/nvim/init.lua ~/.config/nvim
 ln -sw ~/.files/.config/nvim/lua ~/.config/nvim
 
 # alacritty

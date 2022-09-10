@@ -1,0 +1,5 @@
+require "plugins"
+require "lsp"
+require "theming"
+require "telescope-setup"
+require "general"

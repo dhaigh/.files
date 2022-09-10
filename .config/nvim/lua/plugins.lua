@@ -39,7 +39,7 @@ packer.startup(function(use)
 
     -- ts/js syntax highlighting
     -- use 'yuezk/vim-js'
-    use "maxmellon/vim-jsx-pretty"
+    -- use "maxmellon/vim-jsx-pretty"
     -- use "HerringtonDarkholme/yats.vim"
 
     -- lsp stuff

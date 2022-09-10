@@ -1,6 +1,7 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 local lga_actions = require "telescope-live-grep-args.actions"
+
 telescope.setup {
     defaults = {
         mappings = {
@@ -27,6 +28,7 @@ telescope.setup {
 
     pickers = {
         find_files = {
+            layout_strategy = "vertical",
             find_command = {
                 "fd",
                 "--hidden",
@@ -74,3 +76,6 @@ vim.keymap.set("n", "<c-t>", builtin.find_files)
 vim.keymap.set("n", "<c-space>", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.buffers)
 vim.keymap.set("n", "<leader>ff", telescope.extensions.live_grep_args.live_grep_args)
+
+-- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }

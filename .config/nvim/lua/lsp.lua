@@ -35,6 +35,15 @@ null_ls.setup {
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.formatting.rustfmt,
     },
+    on_attach = function(client, bufnr)
+        if client.resolved_capabilities.document_formatting then
+            vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+                callback = function()
+                    vim.lsp.buf.formatting_sync()
+                end,
+            })
+        end
+    end,
 }
 
 --------------------------------------------------------------------------------
@@ -74,3 +83,25 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 require("lspconfig")["tsserver"].setup {
     capabilities = capabilities,
 }
+
+-- local status, ts = pcall(require, "nvim-treesitter.configs")
+-- if not status then
+--     return
+-- end
+
+-- ts.setup {
+--     highlight = {
+--         additional_vim_regex_highlighting = true,
+--         custom_captures = {},
+--         disable = {},
+--         enable = false,
+--         loaded = true,
+--     },
+--     indent = {
+--         enable = true,
+--         disable = {},
+--     },
+--     ensure_installed = {
+--         "tsx",
+--     },
+-- }
