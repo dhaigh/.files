@@ -27,6 +27,7 @@ require("typescript").setup {
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/null-ls.nvim
 local null_ls = require "null-ls"
+local group = vim.api.nvim_create_augroup("null-ls attach", {})
 null_ls.setup {
     debug = true,
     sources = {
@@ -37,8 +38,11 @@ null_ls.setup {
     },
     on_attach = function(client, bufnr)
         if client.resolved_capabilities.document_formatting then
+            -- todo: put this in a group
             vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-                callback = function()
+                pattern = { "*.lua" },
+                group = group,
+                callback = function(opts)
                     vim.lsp.buf.formatting_sync()
                 end,
             })
