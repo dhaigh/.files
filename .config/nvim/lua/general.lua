@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     pattern = { "**/.config/nvim/**/*.lua" },
     group = group,
     callback = function(opts)
-        print("Loaded " .. opts.file)
+        vim.notify("Loaded " .. opts.file)
         dofile(opts.file)
     end,
 })
@@ -99,4 +99,6 @@ vim.cmd [[
 
     set clipboard=unnamed "use system clipboard as unnamed register
     set nowrap
+
+    set mouse=
 ]]

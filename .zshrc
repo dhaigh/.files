@@ -81,7 +81,7 @@ alias tmux='tmux -2'
 alias ta='tmux a'
 alias tm='TMUX= tmux'
 alias tx='tmuxinator start'
-alias vimrc='vim ~/.config/nvim/init.vim'
+alias vimrc='vim ~/.config/nvim/lua/general.lua'
 alias vt='vim ~/.tmux.conf'
 alias vz='vim ~/.zshrc'
 alias :q='exit'
@@ -165,9 +165,9 @@ if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/
 if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Python virtualenv
-export PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
-export PATH="/Users/deco/Library/Python/3.9/bin:${PATH}"
-export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3
+export PATH=/Users/deco/Library/Python/3.9/bin:${PATH}
+export PATH=/Library/Developer/CommandLineTools/usr/bin:${PATH}
+export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
 alias d='deactivate'
@@ -179,7 +179,8 @@ export GOROOT=/usr/local/go
 export PATH=$GOROOT/bin:$PATH
 
 # npm
-export PATH=$HOME/.npm-global/bin:$PATH
+export N_PREFIX=$HOME/.npm-global
+export PATH=$N_PREFIX/bin:$PATH
 
 # rvm
 # export PATH="$PATH:$HOME/.rvm/bin
