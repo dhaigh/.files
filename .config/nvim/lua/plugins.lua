@@ -44,6 +44,7 @@ packer.startup(function(use)
 
     -- lsp stuff
     use "neovim/nvim-lspconfig"
+    use "williamboman/nvim-lsp-installer"
 
     -- more lsp stuff
     use {

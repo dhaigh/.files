@@ -182,6 +182,10 @@ export PATH=$GOROOT/bin:$PATH
 export N_PREFIX=$HOME/.npm-global
 export PATH=$N_PREFIX/bin:$PATH
 
+# deno
+export DENO_INSTALL=$HOME/.deno
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # rvm
 # export PATH="$PATH:$HOME/.rvm/bin
 

@@ -1,8 +1,5 @@
-#### `$ cat .files/instructions`
+to install first:
+* tmux
+* fd
+* (...others)
 
-```
-clone to ~/.files
-run ./install.sh
-???
-profit
-```

@@ -89,6 +89,9 @@ vim.cmd [[
     command! VT e ~/.tmux.conf
     command! VZ e ~/.zshrc
     command! QQ q!
+    command! W w
+    command! Wq wq
+    command! WQ wq
 ]]
 
 vim.cmd [[

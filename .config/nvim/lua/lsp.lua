@@ -12,17 +12,18 @@ vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/typescript.nvim
-require("typescript").setup {
-    disable_commands = false,
-    debug = true,
-    server = {
-        on_attach = function(client, bufnr)
-            client.server_capabilities.document_formatting = false
-            client.server_capabilities.document_range_formatting = false
-            -- on_attach(client, bufnr)
-        end,
-    },
-}
+require("nvim-lsp-installer").setup {}
+-- require("typescript").setup {
+--     disable_commands = false,
+--     debug = true,
+--     server = {
+--         on_attach = function(client, bufnr)
+--             client.server_capabilities.document_formatting = false
+--             client.server_capabilities.document_range_formatting = false
+--             -- on_attach(client, bufnr)
+--         end,
+--     },
+-- }
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/null-ls.nvim
@@ -31,8 +32,8 @@ null_ls.setup {
     debug = true,
     sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.code_actions.eslint_d,
+        -- null_ls.builtins.diagnostics.eslint_d,
+        -- null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.formatting.rustfmt,
     },
     on_attach = function(client, bufnr)
@@ -82,10 +83,10 @@ cmp.setup {
 }
 
 --------------------------------------------------------------------------------
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig")["tsserver"].setup {
-    capabilities = capabilities,
-}
+-- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- require("lspconfig")["tsserver"].setup {
+--     capabilities = capabilities,
+-- }
 
 -- local status, ts = pcall(require, "nvim-treesitter.configs")
 -- if not status then
