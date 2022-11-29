@@ -13,17 +13,17 @@ vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/typescript.nvim
 require("nvim-lsp-installer").setup {}
--- require("typescript").setup {
---     disable_commands = false,
---     debug = true,
---     server = {
---         on_attach = function(client, bufnr)
---             client.server_capabilities.document_formatting = false
---             client.server_capabilities.document_range_formatting = false
---             -- on_attach(client, bufnr)
---         end,
---     },
--- }
+require("typescript").setup {
+    disable_commands = false,
+    debug = true,
+    server = {
+        on_attach = function(client, bufnr)
+            client.server_capabilities.document_formatting = false
+            client.server_capabilities.document_range_formatting = false
+            -- on_attach(client, bufnr)
+        end,
+    },
+}
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/null-ls.nvim

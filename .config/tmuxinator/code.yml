@@ -1,7 +1,0 @@
-name: code
-root: ~/Code
-windows:
-    - vim:
-        layout: main-vertical
-        panes:
-            - vim

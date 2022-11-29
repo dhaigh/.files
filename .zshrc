@@ -142,27 +142,16 @@ alias code='cd ~/Code'
 alias .config='cd ~/.config'
 alias .files='cd ~/.files'
 
-# ms
-alias cs='cd ~/Code/ms/clipchamp-stack'
-alias csf='cd ~/Code/ms/clipchamp-stack/apps/create'
-alias csb='cd ~/Code/ms/clipchamp-stack/apps/business'
-alias acs='cd ~/Code/ms/another-clipchamp-stack'
-alias acsf='cd ~/Code/ms/another-clipchamp-stack/apps/create'
-alias ycs='cd ~/Code/ms/yet-another-clipchamp-stack'
-alias ycsf='cd ~/Code/ms/yet-another-clipchamp-stack/apps/create'
-alias ms='cd ~/Code/ms'
+# vb
+alias vb='cd ~/Code/vb'
+alias cs='cd ~/Code/vb/visibuild-mono'
+alias acs='cd ~/Code/vb/another-visibuild-mono'
 
 alias pg='postgres -D /usr/local/var/postgresql@11'
 
 function cstf {
     yarn test $1 --watch
 }
-
-# # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/deco/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/path.zsh.inc'; fi
-
-# # The next line enables shell command completion for gcloud.
-if [ -f '/Users/deco/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/deco/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Python virtualenv
 export PATH=/Users/deco/Library/Python/3.9/bin:${PATH}
@@ -171,8 +160,6 @@ export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/pyth
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
 alias d='deactivate'
-
-export CUSTOM_GAE_PROJECT_ID=clipdev-declan-haigh-swjga
 
 # Go
 export GOROOT=/usr/local/go
@@ -187,6 +174,4 @@ export DENO_INSTALL=$HOME/.deno
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # rvm
-# export PATH="$PATH:$HOME/.rvm/bin
-
-export RUSH_PNPM_STORE_PATH=~/.rush-pnpm
+export PATH="$PATH:$HOME/.rvm/bin"

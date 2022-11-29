@@ -68,6 +68,9 @@ telescope.setup {
 
                 "--exclude",
                 ".git/",
+
+                "--exclude",
+                "tmp/",
             },
         },
 

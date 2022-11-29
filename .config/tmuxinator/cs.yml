@@ -1,5 +1,5 @@
-name: CC-main
-root: ~/Code/ms/clipchamp-stack
+name: VB-main
+root: ~/Code/vb/visibuild-mono
 windows:
     - vim:
         panes:

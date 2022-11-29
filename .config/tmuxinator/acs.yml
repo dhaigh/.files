@@ -1,5 +1,5 @@
 name: CC-another
-root: ~/Code/ms/another-clipchamp-stack
+root: ~/Code/vb/another-visibuild-mono
 windows:
     - vim:
         panes:

@@ -54,8 +54,8 @@ vim.keymap.set("n", "$", "*")
 vim.keymap.set("n", "<c-n>", ":noh<cr>")
 
 -- wholesome emacsy bindings
-vim.keymap.set("n", "<c-a>", "^")
-vim.keymap.set("n", "<c-e>", "$")
+-- vim.keymap.set("n", "<c-a>", "^")
+-- vim.keymap.set("n", "<c-e>", "$")
 vim.keymap.set("i", "<c-a>", "<c-o>^")
 vim.keymap.set("i", "<c-e>", "<c-o>$")
 vim.keymap.set("i", "<c-l>", '<c-o>"_dW')
