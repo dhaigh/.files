@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
 -- key bindings
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.rename)
 vim.keymap.set("n", "ge", vim.lsp.buf.references)
@@ -83,10 +84,11 @@ cmp.setup {
 }
 
 --------------------------------------------------------------------------------
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- require("lspconfig")["tsserver"].setup {
---     capabilities = capabilities,
--- }
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+require("lspconfig")["tsserver"].setup {
+    -- cmd = { "yarn", "typescript-language-server", "--stdio" },
+    capabilities = capabilities,
+}
 
 -- local status, ts = pcall(require, "nvim-treesitter.configs")
 -- if not status then
