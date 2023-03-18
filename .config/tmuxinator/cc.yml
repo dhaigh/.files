@@ -1,22 +1,23 @@
-name: z carrot
-root: ~/Code/carrot-cards
+name: cc
+root: ~/Code/cc
 windows:
     - vim:
-        layout: main-vertical
-        # Synchronize all panes of this window, can be enabled before or after the pane commands run.
-        # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
-        # synchronize: after
+        layout: 698d,226x67,0,0{152x67,0,0,0,73x67,153,0[73x18,153,0,1,73x24,153,19,11,73x23,153,44,14]}
         panes:
             - vim
-    - git:
-        layout: main-vertical
-    - srv:
-        layout: main-horizontal
-        panes:
-            - frontend:
-                - cd frontend
-            - backend:
-                - cd backend
-                - workon carrot
-                - python serve_debug.py
+            - cd backend; yarn build --watch
+            - cd frontend; yarn tsc --watch
+            -
 
+    - build/serve:
+        layout: 5e00,226x67,0,0[226x33,0,0,12,226x33,0,34{113x33,0,34,13,112x33,114,34,15}]
+        panes:
+            - cd backend; yarn start
+            - cd frontend; yarn start
+            - cd frontend; yarn build:base --watch
+
+    - git:
+        layout: ff5b,226x67,0,0{113x67,0,0,2,112x67,114,0,5}
+        panes:
+            -
+            -
