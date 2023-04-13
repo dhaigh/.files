@@ -42,7 +42,7 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^?' backward-delete-char
 bindkey '\e.' insert-last-word
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg -g ""'
 export FZF_DEFAULT_OPTS='--bind ctrl-s:select-all'
 
 function zle-line-init zle-keymap-select {
@@ -76,6 +76,7 @@ alias l='ls -1aF'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias git='/opt/homebrew/bin/git'
 alias vim='nvim'
 alias tmux='tmux -2'
 alias ta='tmux a'
@@ -136,6 +137,8 @@ function gn() {
 }
 
 alias s='yarn start'
+alias c='bundle exec rails c'
+alias ser='bundle exec rails s'
 
 # --------------------------------------
 alias code='cd ~/Code'

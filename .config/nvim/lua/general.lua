@@ -41,7 +41,7 @@ vim.keymap.set({ "n", "v" }, "<c-k>", "{")
 -- buffers
 vim.keymap.set("n", "<tab>", ":bn<cr>")
 vim.keymap.set("n", "<s-tab>", ":bp<cr>")
-vim.keymap.set("n", "<leader>q", ":bp|bd#<cr>")
+vim.keymap.set("n", "<leader>q", ":bp|bd #<cr>")
 vim.keymap.set("n", "<leader>b", ":bufdo bd<cr>")
 
 -- ergonomics (- is next to 0)
@@ -76,6 +76,15 @@ vim.keymap.set({ "n", "v" }, "(", "F(")
 vim.keymap.set("i", "<leader>c", "console.log(")
 vim.keymap.set("i", "<leader>d", "debugger;<esc>")
 
+-- <c-n> <c-p>
+local cmp = require "cmp"
+cmp.setup {
+    mapping = cmp.mapping.preset.insert {
+        ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
+        ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+    },
+}
+
 ----------------------------------------
 -- plugins
 ----------------------------------------
@@ -83,6 +92,9 @@ vim.keymap.set("n", "<leader>r", ":NERDTreeFind<cr>")
 
 -- commands
 vim.cmd [[
+vnoremap p pgvy
+vnoremap P Pgvy
+
     command! VR e ~/.config/nvim/lua/general.lua
     command! VL e ~/.config/nvim/lua/lsp.lua
     command! VT e ~/.tmux.conf

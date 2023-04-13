@@ -52,6 +52,9 @@ packer.startup(function(use)
         requires = { { "nvim-lua/plenary.nvim" } },
     }
 
+    -- ruby lsp
+    -- use "Shopify/ruby-lsp"
+
     -- themey stuff
     use "nvim-lualine/lualine.nvim"
     use "akinsho/bufferline.nvim"

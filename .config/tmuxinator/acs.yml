@@ -1,4 +1,4 @@
-name: CC-another
+name: VB-another
 root: ~/Code/vb/another-visibuild-mono
 windows:
     - vim:

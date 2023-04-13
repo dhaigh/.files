@@ -74,7 +74,7 @@ telescope.setup {
         },
 
         live_grep = {
-            -- grep_open_files = true,
+            find_command = { "rg", "--files", "--no-ignore" },
         },
     },
 }
@@ -82,18 +82,20 @@ telescope.setup {
 --------------------------------------------------------------------------------
 -- key bindings
 local builtin = require "telescope.builtin"
+-- builtin.find_files{
+--     find_command = { "rg", "--files", "--ignore-file", vim.fn.expand("~/.config/.ignore") }
+-- }
 
-vim.keymap.set("v", "!", function()
-    local cword = vim.fn.expand "<cword>"
-    builtin.live_grep {
-        default_text = cword,
-    }
-end)
+-- vim.keymap.set("v", "!", function()
+--     local cword = vim.fn.expand "<cword>"
+--     builtin.live_grep {
+--         default_text = cword,
+--     }
+-- end)
 
 vim.keymap.set("n", "<c-t>", builtin.find_files)
 vim.keymap.set("n", "<c-space>", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.buffers)
 vim.keymap.set("n", "<leader>ff", telescope.extensions.live_grep_args.live_grep_args)
-
 -- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 -- parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
