@@ -28,6 +28,7 @@ vim.api.nvim_set_option("shiftwidth", 4)
 
 -- the all important
 vim.keymap.set("i", "<c-c>", "<esc>")
+vim.keymap.set("i", "<s-tab>", "<esc>")
 
 -- window navigation
 vim.keymap.set("n", "<c-h>", "<c-w>h")
@@ -90,7 +91,10 @@ vim.cmd [[
     command! W w
     command! Wq wq
     command! WQ wq
+    command! R :LspRestart<cr>
 ]]
+
+vim.g.ftplugin_sql_omni_key = "<c-j>"
 
 vim.cmd [[
     let NERDTreeIgnore = ['\.pyc$', '__pycache__']

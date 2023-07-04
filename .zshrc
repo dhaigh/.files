@@ -142,13 +142,14 @@ alias code='cd ~/Code'
 alias .config='cd ~/.config'
 alias .files='cd ~/.files'
 
+# cc
+alias cc='cd ~/Code/cc'
+
 # vb
 alias vb='cd ~/Code/vb'
 alias cs='cd ~/Code/vb/visibuild-mono'
 alias acs='cd ~/Code/vb/another-visibuild-mono'
 alias dk='docker kill $(docker ps -q)'
-
-alias pg='postgres -D /usr/local/var/postgresql@11'
 
 function cstf {
     yarn test $1 --watch

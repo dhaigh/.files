@@ -30,8 +30,7 @@ key_bindings:
 
 font:
   normal:
-    family: "Hack Nerd Font"
-    style: Regular
+    family: "GabrieleLightRibbonFG Nerd Font"
 
 selection:
   save_to_clipboard: true
