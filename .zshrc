@@ -136,6 +136,7 @@ function gn() {
     git checkout -b $1 origin/master
 }
 
+alias b='bundle'
 alias s='yarn start'
 alias c='bundle exec rails c'
 alias ser='bundle exec rails s'
@@ -159,7 +160,7 @@ function cstf {
 }
 
 # Python virtualenv
-export PATH=/Users/deco/Library/Python/3.9/bin:${PATH}
+export PATH=/Users/$USER/Library/Python/3.9/bin:${PATH}
 export PATH=/Library/Developer/CommandLineTools/usr/bin:${PATH}
 export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/python3
 export WORKON_HOME=$HOME/.virtualenvs

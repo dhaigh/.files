@@ -1,0 +1,14 @@
+key_bindings:
+  # - { key: A, mods: Control, chars: "" }
+  # - { key: E, mods: Control, chars: "" }
+  - { key: Period,   mods: Alt,       chars: "\x1b."                       }
+  - { key: B,        mods: Command,   chars: "\x1bb"                       }
+
+font:
+  normal:
+    family: "DaddyTimeMono Nerd Font"
+    style: Regular
+
+selection:
+  save_to_clipboard: true
+
