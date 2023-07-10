@@ -27,6 +27,7 @@ vim.api.nvim_set_option("shiftwidth", 4)
 -- https://www.reddit.com/r/neovim/comments/uuh8xw/comment/i9g59nx/?utm_source=reddit&utm_medium=web2x&context=3
 
 -- the all important
+vim.keymap.set("i", "<s-tab>", "<esc>")
 vim.keymap.set("i", "<c-c>", "<esc>")
 vim.keymap.set("i", "<s-tab>", "<esc>")
 

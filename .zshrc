@@ -138,6 +138,7 @@ function gn() {
 
 alias b='bundle'
 alias s='yarn start'
+alias w='yarn wds'
 alias c='bundle exec rails c'
 alias ser='bundle exec rails s'
 
