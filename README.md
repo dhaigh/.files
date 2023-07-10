@@ -1,5 +1,7 @@
 * homebrew
 * essentials `brew install nvim tmux fd rg fzf diff-so-fancy git`
+* packer: `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
+* `:PackerInstall`
 * rvm (rbenv is still cooked on silicon macs)
 * tmuxinator via gems `gem install tmuxinator`
 * nerd fonts https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
