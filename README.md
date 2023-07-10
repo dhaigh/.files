@@ -1,5 +1,5 @@
 * homebrew
-* essentials `brew install nvim tmux fd rg fzf diff-so-fancy`
+* essentials `brew install nvim tmux fd rg fzf diff-so-fancy git`
 * rvm (rbenv is still cooked on silicon macs)
 * tmuxinator via gems `gem install tmuxinator`
 * nerd fonts https://github.com/ryanoasis/nerd-fonts#option-4-homebrew-fonts
@@ -8,4 +8,4 @@
 * `n` bootstrap install: https://github.com/tj/n#installation
 * yarn: https://yarnpkg.com/getting-started/install
 * typescript language server: https://github.com/typescript-language-server/typescript-language-server
-* ./install.sh
+* `./install.sh`
