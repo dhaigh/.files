@@ -1,5 +1,5 @@
 * homebrew
-* essentials `brew install nvim tmux fd rg fzf diff-so-fancy git`
+* essentials `brew install nvim tmux fd rg fzf diff-so-fancy git jq`
 * `git config --global user.name 'Declan Haigh'`
 * `git config --global user.email 'declan@declanhaigh.com'`
 * packer: `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
