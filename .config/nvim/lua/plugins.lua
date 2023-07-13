@@ -73,4 +73,7 @@ packer.startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-vsnip"
+
+    -- copilot
+    use "github/copilot.vim"
 end)
