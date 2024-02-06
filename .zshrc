@@ -119,6 +119,7 @@ alias gop='git checkout -'
 alias gomu='gom && gu'
 alias gomup='gom && gu && gop'
 alias gp='git push'
+alias gpf='git push --force-with-lease'
 alias gpu='gbn | xargs git push --set-upstream origin'
 alias gr='git reset'
 alias grf='gcd ; git diff --staged --name-only | fzf -m --height=8 | xargs git reset ; cd -'
@@ -139,6 +140,7 @@ function gn() {
 alias b='bundle'
 alias s='yarn start'
 alias w='yarn wds'
+alias t='bin/rails test'
 alias c='bundle exec rails c'
 alias ser='bundle exec rails s'
 
@@ -179,6 +181,13 @@ export PATH=$N_PREFIX/bin:$PATH
 # deno
 export DENO_INSTALL=$HOME/.deno
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# openjdk
+export JAVA_PATH=/opt/homebrew/Cellar/openjdk@17/17.0.8/bin
+export PATH=$JAVA_PATH:$PATH
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$HOME/platform-tools:$PATH
 
 # rvm
 export PATH="$PATH:$HOME/.rvm/bin"

@@ -19,6 +19,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.api.nvim_set_option("expandtab", true) -- <tab> produces spaces
 vim.api.nvim_set_option("softtabstop", 4)
 vim.api.nvim_set_option("shiftwidth", 4)
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 ----------------------------------------
 -- key bindings
@@ -67,6 +70,7 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>")
 vim.keymap.set({ "n", "v" }, "c", '"_c')
 vim.keymap.set({ "n", "v" }, "C", '"_C')
 vim.keymap.set({ "n", "v" }, "s", '"_s')
+vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "S", '"_S') -- capital S in visual mode is for surround
 
 -- remap brackets (i know it's weird)
@@ -83,6 +87,10 @@ cmp.setup {
     mapping = cmp.mapping.preset.insert {
         ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
+        ["<CR>"] =  cmp.mapping.confirm({
+		behavior = cmp.ConfirmBehavior.Insert,
+                    select = false,
+		}),
     },
 }
 
