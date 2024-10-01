@@ -70,11 +70,19 @@ telescope.setup {
 
                 "--exclude",
                 "tmp/",
+
+                "--exclude",
+                "*.rbi",
             },
         },
 
         live_grep = {
-            find_command = { "rg", "--files", "--no-ignore" },
+            find_command = {
+                "rg",
+                "--files",
+                "--no-ignore",
+                "--iglob='!*.rbi'"
+            },
         },
     },
 }

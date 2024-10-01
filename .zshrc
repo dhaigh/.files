@@ -144,6 +144,12 @@ alias t='bin/rails test'
 alias c='bundle exec rails c'
 alias ser='bundle exec rails s'
 
+
+tw() {
+    fswatch "$1" | xargs -n1 -I{} sh -c "bin/rails test $1"
+}
+
+
 # --------------------------------------
 alias code='cd ~/Code'
 alias .config='cd ~/.config'
@@ -183,8 +189,8 @@ export DENO_INSTALL=$HOME/.deno
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # openjdk
-export JAVA_PATH=/opt/homebrew/Cellar/openjdk@17/17.0.8/bin
-export PATH=$JAVA_PATH:$PATH
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.11
+export PATH="$JAVA_HOME/bin:$PATH"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$HOME/platform-tools:$PATH

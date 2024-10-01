@@ -117,6 +117,14 @@ require("lspconfig")["tsserver"].setup {
 --
 local lspconfig = require "lspconfig"
 
+
+lspconfig.sorbet.setup{
+  cmd = {"srb", "tc", "--lsp"},
+  filetypes = {"ruby"},
+  root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
+}
+
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)

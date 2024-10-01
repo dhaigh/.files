@@ -2,6 +2,9 @@
 * essentials `brew install nvim tmux fd rg fzf diff-so-fancy git jq stylua`
 * `git config --global user.name 'Declan Haigh'`
 * `git config --global user.email 'declan@declanhaigh.com'`
+* `git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"`
+* `git config --global push.autoSetupRemote true`
+* `git config --global commit.gpgsign true`
 * packer: `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
 * `:PackerInstall`
 * rvm (rbenv is still cooked on silicon macs)
