@@ -169,12 +169,12 @@ function cstf {
 }
 
 # Python virtualenv
-export PATH=/Users/$USER/Library/Python/3.9/bin:${PATH}
-export PATH=/Library/Developer/CommandLineTools/usr/bin:${PATH}
-export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-source virtualenvwrapper.sh
-alias d='deactivate'
+# export PATH=/Users/$USER/Library/Python/3.9/bin:${PATH}
+# export PATH=/Library/Developer/CommandLineTools/usr/bin:${PATH}
+# export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/python3
+# export WORKON_HOME=$HOME/.virtualenvs
+# source virtualenvwrapper.sh
+# alias d='deactivate'
 
 # Go
 export GOROOT=/usr/local/go
@@ -197,3 +197,5 @@ export PATH=$HOME/platform-tools:$PATH
 
 # rvm
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+alias gemdir='cd $(rvm gemdir)'

@@ -1,3 +1,10 @@
+[selection]
+save_to_clipboard = true
+
+[shell]
+program = "/bin/zsh"
+args = ["-l"]
+
 [font.normal]
 family = "GabrieleLightRibbonFG Nerd Font"
 
@@ -135,6 +142,3 @@ mods = "Alt"
 chars = "\u001Bz"
 key = "Z"
 mods = "Alt"
-
-[selection]
-save_to_clipboard = true

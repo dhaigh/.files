@@ -3,10 +3,12 @@
 # make directories
 mkdir -v ~/.config
 mkdir -v ~/.config/nvim
+mkdir -v ~/.config/nvim/swaps
 
 # neovim
 ln -sw ~/.files/.config/nvim/init.lua ~/.config/nvim
 ln -sw ~/.files/.config/nvim/lua ~/.config/nvim
+ln -sw ~/.files/.config/nvim/old.vim ~/.vimrc
 
 # alacritty
 ln -sw ~/.files/.config/alacritty ~/.config

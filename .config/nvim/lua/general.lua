@@ -87,10 +87,10 @@ cmp.setup {
     mapping = cmp.mapping.preset.insert {
         ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
         ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-        ["<CR>"] =  cmp.mapping.confirm({
-		behavior = cmp.ConfirmBehavior.Insert,
-                    select = false,
-		}),
+        ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = false,
+        },
     },
 }
 
@@ -125,6 +125,5 @@ vim.cmd [[
 
     set clipboard=unnamed "use system clipboard as unnamed register
     set nowrap
-
     set mouse=
 ]]

@@ -47,6 +47,7 @@ set tabstop=8 "num spaces rendered by a tab character
 set hidden
 nmap <tab> :bnext<cr>
 nmap <s-tab> :bprevious<cr>
+imap <s-tab> <esc><cr>
 nmap <leader>q :bp <bar> bd #<cr>
 nmap <leader>b :bufdo bd<cr>
 nmap <leader>h :hide<cr>

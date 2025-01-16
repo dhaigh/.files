@@ -13,18 +13,18 @@ vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/typescript.nvim
-require("nvim-lsp-installer").setup {}
-require("typescript").setup {
-    disable_commands = false,
-    debug = true,
-    server = {
-        on_attach = function(client, bufnr)
-            client.server_capabilities.document_formatting = false
-            client.server_capabilities.document_range_formatting = false
-            -- on_attach(client, bufnr)
-        end,
-    },
-}
+
+-- require("typescript").setup {
+--     disable_commands = false,
+--     debug = true,
+--     server = {
+--         on_attach = function(client, bufnr)
+--             client.server_capabilities.document_formatting = false
+--             client.server_capabilities.document_range_formatting = false
+--             -- on_attach(client, bufnr)
+--         end,
+--     },
+-- }
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/null-ls.nvim
@@ -85,8 +85,10 @@ cmp.setup {
 
 --------------------------------------------------------------------------------
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-require("lspconfig")["tsserver"].setup {
-    -- cmd = { "yarn", "typescript-language-server", "--stdio" },
+local lspconfig = require "lspconfig"
+lspconfig.ts_ls.setup {
+    cmd = { "typescript-language-server", "--stdio" },
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     capabilities = capabilities,
 }
 
@@ -115,15 +117,6 @@ require("lspconfig")["tsserver"].setup {
 --
 -- solargraph (ruby)
 --
-local lspconfig = require "lspconfig"
-
-
-lspconfig.sorbet.setup{
-  cmd = {"srb", "tc", "--lsp"},
-  filetypes = {"ruby"},
-  root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-}
-
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -177,10 +170,37 @@ end
 
 local defaults = {}
 
-lspconfig.solargraph.setup(vim.tbl_deep_extend("force", {
-    settings = {
-        Solargraph = {
-            root_dir = lspconfig.util.root_pattern("Gemfile", ".git")(fname) or vim.fn.getcwd(),
-        },
-    },
-}, defaults))
+-- lspconfig.solargraph.setup(vim.tbl_deep_extend("force", {
+--     settings = {
+--         Solargraph = {
+--             root_dir = lspconfig.util.root_pattern("Gemfile", ".git")(fname) or vim.fn.getcwd(),
+--         },
+--     },
+-- }, defaults))
+
+-- lspconfig.sorbet.setup = {}
+
+-- lspconfig.sorbet.setup = {
+--     sorbet = function()
+--         lspconfig.sorbet.setup {
+--             cmd = { "srb", "tc", "--lsp" },
+--             filetypes = { "ruby" },
+--             root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
+--         }
+--     end,
+-- }
+
+-- require("lspconfig").sorbet.setup = {
+--     cmd = { "bundle", "exec", "srb", "tc", "--lsp" },
+--     root_dir = function(fname)
+--         local root = require("lspconfig.util").root_pattern("Gemfile", ".git")(fname)
+--         print("Detected root: " .. (root or "nil"))
+--         return root
+--     end,
+--     on_attach = function(client, bufnr)
+--         print("Sorbet attached to buffer " .. bufnr)
+--     end,
+-- }
+
+vim.lsp.set_log_level "debug"
+lspconfig.sorbet.setup {}
