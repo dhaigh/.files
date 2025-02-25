@@ -199,3 +199,5 @@ export PATH=$HOME/platform-tools:$PATH
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 alias gemdir='cd $(rvm gemdir)'
+
+export OPENAI_API_KEY=$(cat ~/.openai)
