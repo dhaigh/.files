@@ -76,6 +76,7 @@ alias l='ls -1aF'
 alias cp='cp -i'
 alias mv='mv -i'
 
+alias p='pnpm'
 alias vim='nvim'
 alias tmux='tmux -2'
 alias ta='tmux a'
@@ -156,9 +157,8 @@ function cstf {
 }
 
 # Python virtualenv
-export PATH=/Users/deco/Library/Python/3.9/bin:${PATH}
-export PATH=/Library/Developer/CommandLineTools/usr/bin:${PATH}
-export VIRTUALENVWRAPPER_PYTHON=/Library/Developer/CommandLineTools/usr/bin/python3
+# export PATH=${PATH}:/Library/Developer/CommandLineTools/usr/bin
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
 alias d='deactivate'

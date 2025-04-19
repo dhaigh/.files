@@ -106,4 +106,5 @@ vim.cmd [[
     set nowrap
 
     set mouse=
+    set relativenumber
 ]]
