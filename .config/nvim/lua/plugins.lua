@@ -48,7 +48,7 @@ packer.startup(function(use)
 
     -- more lsp stuff
     use {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
 
@@ -60,7 +60,7 @@ packer.startup(function(use)
     use "EdenEast/nightfox.nvim"
 
     -- integration with typescript-language-server
-    use "jose-elias-alvarez/typescript.nvim"
+    -- use "jose-elias-alvarez/typescript.nvim"
 
     -- icons for nerdtree
     use "ryanoasis/vim-devicons"
@@ -70,4 +70,8 @@ packer.startup(function(use)
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-vsnip"
+
+    use "github/copilot.vim"
+    
+    use "rust-lang/rust.vim"
 end)

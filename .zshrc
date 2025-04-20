@@ -143,8 +143,8 @@ alias code='cd ~/Code'
 alias .config='cd ~/.config'
 alias .files='cd ~/.files'
 
-# cc
-alias cc='cd ~/Code/cc'
+# profound
+alias prof='cd ~/Code/profound'
 
 # vb
 alias vb='cd ~/Code/vb'
@@ -157,7 +157,7 @@ function cstf {
 }
 
 # Python virtualenv
-# export PATH=${PATH}:/Library/Developer/CommandLineTools/usr/bin
+export PATH=$HOME/Library/Python/3.9/bin:$PATH
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 export WORKON_HOME=$HOME/.virtualenvs
 source virtualenvwrapper.sh
@@ -172,8 +172,10 @@ export N_PREFIX=$HOME/.npm-global
 export PATH=$N_PREFIX/bin:$PATH
 
 # deno
-export DENO_INSTALL=$HOME/.deno
-export PATH="$DENO_INSTALL/bin:$PATH"
+# export DENO_INSTALL=$HOME/.deno
+# export PATH="$DENO_INSTALL/bin:$PATH"
 
 # rvm
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export HOMEBREW_NO_AUTO_UPDATE=1

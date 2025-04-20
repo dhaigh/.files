@@ -1,6 +1,12 @@
 [font.normal]
 family = "GabrieleLightRibbonFG Nerd Font"
 
+[selection]
+save_to_clipboard = true
+
+[general]
+live_config_reload = true
+
 [[keyboard.bindings]]
 chars = "\u001B."
 key = "Period"
@@ -135,6 +141,3 @@ mods = "Alt"
 chars = "\u001Bz"
 key = "Z"
 mods = "Alt"
-
-[selection]
-save_to_clipboard = true
