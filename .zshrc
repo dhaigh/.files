@@ -136,6 +136,14 @@ function gn() {
     git checkout -b $1 origin/master
 }
 
+function fkill() {
+    ps aux \
+    | awk '{printf "%s ", $2} {for(i=11; i<=NF; i++) printf "%s ", $i; print ""}' \
+    | fzf --height=10 \
+    | awk '{print $1}' \
+    | xargs kill -9 $1
+}
+
 alias s='yarn start'
 
 # --------------------------------------
