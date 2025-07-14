@@ -59,3 +59,8 @@
 	conflictstyle = zdiff3 
 [pull]
 	rebase = true
+
+
+[grep]
+	patternType = perl
+

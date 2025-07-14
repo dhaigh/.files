@@ -137,12 +137,21 @@ function gn() {
     git checkout -b $1 origin/master
 }
 
+function fkill() {
+    ps aux \
+    | awk '{printf "%s ", $2} {for(i=11; i<=NF; i++) printf "%s ", $i; print ""}' \
+    | fzf --height=10 \
+    | awk '{print $1}' \
+    | xargs kill -9 $1
+}
+
 alias b='bundle'
 alias s='yarn start'
 alias w='yarn wds'
 alias t='bin/rails test'
 alias c='bundle exec rails c'
-alias ser='bundle exec rails s'
+alias ser='MODE=app bundle exec rails s -p 3000 -P tmp/pids/app.pid'
+alias tic='MODE=tickets bundle exec rails s -p 3001 -P tmp/pids/tickets.pid'
 
 
 tw() {
@@ -181,23 +190,24 @@ export GOROOT=/usr/local/go
 export PATH=$GOROOT/bin:$PATH
 
 # npm
-export N_PREFIX=$HOME/.npm-global
-export PATH=$N_PREFIX/bin:$PATH
+# export N_PREFIX=$HOME/.npm-global
+# export PATH=$N_PREFIX/bin:$PATH
 
 # deno
 export DENO_INSTALL=$HOME/.deno
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # openjdk
-export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.11
-export PATH="$JAVA_HOME/bin:$PATH"
+# export JAVA_HOME=/opt/homebrew/Cellar/openjdk@17/17.0.11
+# export PATH="$JAVA_HOME/bin:$PATH"
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$HOME/platform-tools:$PATH
+# export ANDROID_HOME=$HOME/Library/Android/sdk
+# export PATH=$HOME/platform-tools:$PATH
 
 # rvm
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-alias gemdir='cd $(rvm gemdir)'
+# export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+# alias gemdir='cd $(rvm gemdir)'
 
 export OPENAI_API_KEY=$(cat ~/.openai)
+eval "$(/Users/deco/.local/bin/mise activate zsh)"
