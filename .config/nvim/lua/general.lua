@@ -79,8 +79,6 @@ vim.keymap.set("i", "<leader>d", "debugger;<esc>")
 ----------------------------------------
 -- plugins
 ----------------------------------------
-vim.keymap.set("n", "<leader>r", ":NERDTreeFind<cr>")
-
 -- commands
 vim.cmd [[
     command! VR e ~/.config/nvim/lua/general.lua
@@ -97,11 +95,6 @@ vim.cmd [[
 vim.g.ftplugin_sql_omni_key = "<c-j>"
 
 vim.cmd [[
-    let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-    let NERDTreeNaturalSort = 1
-    let NERDTreeCaseSensitiveSort = 1
-    let g:NERDTreeWinSize=50
-
     set clipboard=unnamed "use system clipboard as unnamed register
     set nowrap
 
@@ -109,3 +102,50 @@ vim.cmd [[
     set number
     set relativenumber
 ]]
+
+require("nvim-treesitter.configs").setup {
+    -- Add the languages you want here
+    ensure_installed = { "typescript", "tsx", "javascript", "lua", "vim", "vimdoc" },
+
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- Automatically install missing parsers when entering buffer
+    auto_install = true,
+
+    highlight = {
+        enable = true, -- This is the most important part!
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+-- nvim-tree setup
+--------------------------------------------------------
+
+vim.keymap.set("n", "<leader>r", ":NvimTreeFindFile<cr>")
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- OR setup with some options
+require("nvim-tree").setup {
+    sort = {
+        sorter = "case_sensitive",
+    },
+    view = {
+        width = 50,
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = false,
+    },
+    update_focused_file = {
+        enable = true,
+        update_root = true,
+    },
+}

@@ -136,7 +136,7 @@ function gn() {
     git checkout -b $1 origin/master
 }
 
-function fkill() {
+function fk() {
     ps aux \
     | awk '{printf "%s ", $2} {for(i=11; i<=NF; i++) printf "%s ", $i; print ""}' \
     | fzf --height=10 \
