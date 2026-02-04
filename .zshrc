@@ -66,6 +66,10 @@ zle -N zle-keymap-select
 
 function mcd() { mkdir -p $1 && cd $1 }
 
+function ports() {
+    lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print $9, $1, $2}' | sed 's/.*://' | while read port process pid; do echo "Port $port: $(ps -p $pid -o command= | sed 's/^-//') (PID: $pid)"; done | sort -k2n | uniq
+}
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -171,6 +175,8 @@ alias cc='cd ~/Code/cc'
 alias vb='cd ~/Code/vb'
 alias cs='cd ~/Code/vb/visibuild-mono'
 alias acs='cd ~/Code/vb/another-visibuild-mono'
+alias mcs='cd ~/Code/vb/visibuild-native'
+
 alias dk='docker kill $(docker ps -q)'
 
 function cstf {
@@ -207,7 +213,8 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # rvm
 # export PATH="$PATH:$HOME/.rvm/bin"
 # export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-# alias gemdir='cd $(rvm gemdir)'
+
+alias gemdir='cd $(gem environment gemdir)'
 
 export OPENAI_API_KEY=$(cat ~/.openai)
 eval "$(/Users/deco/.local/bin/mise activate zsh)"

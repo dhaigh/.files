@@ -159,7 +159,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 lspconfig.solargraph.setup {
-    cmd = { "/Users/deco/.local/share/mise/installs/ruby/3.4.4/bin/solargraph", "stdio" },
+    cmd = { "/Users/deco/.local/share/mise/installs/ruby/latest/bin/solargraph", "stdio" },
     on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
@@ -201,4 +201,5 @@ local defaults = {}
 -- }
 
 -- vim.lsp.set_log_level "debug"
+vim.lsp.set_log_level "off"
 lspconfig.sorbet.setup {}

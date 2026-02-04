@@ -108,6 +108,8 @@ vnoremap P Pgvy
     command! VL e ~/.config/nvim/lua/lsp.lua
     command! VT e ~/.tmux.conf
     command! VZ e ~/.zshrc
+    command! LR LspRestart
+    command! LI LspInfo
     command! QQ q!
     command! W w
     command! Wq wq
