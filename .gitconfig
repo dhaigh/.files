@@ -43,7 +43,7 @@
 	enabled = true
 	autoupdate = true
 [core]
-	excludesfile = ~/.gitignore
+	excludesFile = ~/.config/git/ignore
 [rebase]
 	autoSquash = true
 	autoStash = true

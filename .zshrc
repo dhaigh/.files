@@ -154,7 +154,7 @@ alias s='yarn start'
 alias w='yarn wds'
 alias t='bin/rails test'
 alias c='bundle exec rails c'
-alias ser='MODE=app bundle exec rails s -p 3000 -P tmp/pids/app.pid'
+alias ser='RAILS_LOG_LEVEL=debug MODE=app bundle exec rails s -p 3000 -P tmp/pids/app.pid'
 alias tic='MODE=tickets bundle exec rails s -p 3001 -P tmp/pids/tickets.pid'
 
 
