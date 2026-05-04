@@ -12,7 +12,6 @@ vim.keymap.set("n", "<leader>a", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 
 local null_ls = require "null-ls"
-local nvim_lsp = require "lspconfig"
 local cmp = require "cmp"
 
 --------------------------------------------------------------------------------
@@ -36,7 +35,7 @@ null_ls.setup {
     end,
 }
 
-nvim_lsp.rust_analyzer.setup {
+vim.lsp.config("rust_analyzer", {
     settings = {
         ["rust-analyzer"] = {
             cargo = {
@@ -59,7 +58,8 @@ nvim_lsp.rust_analyzer.setup {
             })
         end
     end,
-}
+})
+vim.lsp.enable "rust_analyzer"
 
 --------------------------------------------------------------------------------
 -- https://github.com/hrsh7th/nvim-cmp
@@ -98,29 +98,13 @@ cmp.setup {
 -- jose-elias-alvarez/typescript.nvim
 -- require("nvim-lsp-installer").setup {}
 -- https://docs.deno.com/runtime/getting_started/setup_your_environment/#neovim-0.6%2B-using-the-built-in-language-server
-nvim_lsp.denols.setup {
-    -- on_attach = on_attach,
-    root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-}
-
-nvim_lsp.ts_ls.setup {
-    -- disable_commands = false,
-    -- debug = true,
-    server = {
-        on_attach = function(client, bufnr)
-            client.stop()
-            for _, cl in pairs(vim.lsp.buf_get_clients()) do
-                if cl.name == "denols" then
-                    print "deno is running"
-                end
-            end
-            -- client.server_capabilities.document_formatting = false
-            -- client.server_capabilities.document_range_formatting = false
-        end,
-    },
-    root_dir = nvim_lsp.util.root_pattern "package.json",
+vim.lsp.config("ts_ls", {
+    root_dir = function(bufnr)
+        return vim.fs.root(bufnr, { "package.json" })
+    end,
     single_file_support = false,
-}
+})
+vim.lsp.enable "ts_ls"
 
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- nvim_lsp["tsserver"].setup {
