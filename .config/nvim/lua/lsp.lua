@@ -36,6 +36,8 @@ null_ls.setup {
 }
 
 vim.lsp.config("rust_analyzer", {
+    cmd = { "rust-analyzer" },
+    filetypes = { "rust" },
     settings = {
         ["rust-analyzer"] = {
             cargo = {
@@ -98,10 +100,13 @@ cmp.setup {
 -- jose-elias-alvarez/typescript.nvim
 -- require("nvim-lsp-installer").setup {}
 -- https://docs.deno.com/runtime/getting_started/setup_your_environment/#neovim-0.6%2B-using-the-built-in-language-server
+vim.lsp.config("ruby_lsp", {
+    cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "ruby-lsp" },
+})
+vim.lsp.enable "ruby_lsp"
+
 vim.lsp.config("ts_ls", {
-    root_dir = function(bufnr)
-        return vim.fs.root(bufnr, { "package.json" })
-    end,
+    cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "typescript-language-server", "--stdio" },
     single_file_support = false,
 })
 vim.lsp.enable "ts_ls"
