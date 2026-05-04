@@ -19,9 +19,6 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.api.nvim_set_option("expandtab", true) -- <tab> produces spaces
 vim.api.nvim_set_option("softtabstop", 4)
 vim.api.nvim_set_option("shiftwidth", 4)
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
 
 ----------------------------------------
 -- key bindings
@@ -30,7 +27,6 @@ vim.opt.signcolumn = "yes"
 -- https://www.reddit.com/r/neovim/comments/uuh8xw/comment/i9g59nx/?utm_source=reddit&utm_medium=web2x&context=3
 
 -- the all important
-vim.keymap.set("i", "<s-tab>", "<esc>")
 vim.keymap.set("i", "<c-c>", "<esc>")
 vim.keymap.set("i", "<s-tab>", "<esc>")
 
@@ -45,7 +41,7 @@ vim.keymap.set({ "n", "v" }, "<c-k>", "{")
 -- buffers
 vim.keymap.set("n", "<tab>", ":bn<cr>")
 vim.keymap.set("n", "<s-tab>", ":bp<cr>")
-vim.keymap.set("n", "<leader>q", ":bp|bd #<cr>")
+vim.keymap.set("n", "<leader>q", ":bp|bd#<cr>")
 vim.keymap.set("n", "<leader>b", ":bufdo bd<cr>")
 
 -- ergonomics (- is next to 0)
@@ -70,7 +66,6 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>")
 vim.keymap.set({ "n", "v" }, "c", '"_c')
 vim.keymap.set({ "n", "v" }, "C", '"_C')
 vim.keymap.set({ "n", "v" }, "s", '"_s')
-vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "S", '"_S') -- capital S in visual mode is for surround
 
 -- remap brackets (i know it's weird)
@@ -81,35 +76,15 @@ vim.keymap.set({ "n", "v" }, "(", "F(")
 vim.keymap.set("i", "<leader>c", "console.log(")
 vim.keymap.set("i", "<leader>d", "debugger;<esc>")
 
--- <c-n> <c-p>
-local cmp = require "cmp"
-cmp.setup {
-    mapping = cmp.mapping.preset.insert {
-        ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "c" }),
-        ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
-        ["<CR>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = false,
-        },
-    },
-}
-
 ----------------------------------------
 -- plugins
 ----------------------------------------
-vim.keymap.set("n", "<leader>r", ":NERDTreeFind<cr>")
-
 -- commands
 vim.cmd [[
-vnoremap p pgvy
-vnoremap P Pgvy
-
     command! VR e ~/.config/nvim/lua/general.lua
     command! VL e ~/.config/nvim/lua/lsp.lua
     command! VT e ~/.tmux.conf
     command! VZ e ~/.zshrc
-    command! LR LspRestart
-    command! LI LspInfo
     command! QQ q!
     command! W w
     command! Wq wq
@@ -120,12 +95,57 @@ vnoremap P Pgvy
 vim.g.ftplugin_sql_omni_key = "<c-j>"
 
 vim.cmd [[
-    let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-    let NERDTreeNaturalSort = 1
-    let NERDTreeCaseSensitiveSort = 1
-    let g:NERDTreeWinSize=50
-
     set clipboard=unnamed "use system clipboard as unnamed register
     set nowrap
+
     set mouse=
+    set number
+    set relativenumber
 ]]
+
+require("nvim-treesitter.configs").setup {
+    -- Add the languages you want here
+    ensure_installed = { "typescript", "tsx", "javascript", "lua", "vim", "vimdoc" },
+
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- Automatically install missing parsers when entering buffer
+    auto_install = true,
+
+    highlight = {
+        enable = true, -- This is the most important part!
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+-- nvim-tree setup
+--------------------------------------------------------
+
+vim.keymap.set("n", "<leader>r", ":NvimTreeFindFile<cr>")
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- OR setup with some options
+require("nvim-tree").setup {
+    sort = {
+        sorter = "case_sensitive",
+    },
+    view = {
+        width = 50,
+    },
+    renderer = {
+        group_empty = true,
+    },
+    filters = {
+        dotfiles = false,
+    },
+    update_focused_file = {
+        enable = true,
+        update_root = true,
+    },
+}

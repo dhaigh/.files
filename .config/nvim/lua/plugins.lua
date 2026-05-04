@@ -21,7 +21,7 @@ packer.startup(function(use)
 
     -- better syntax highlighting, used by telescope
     use "nvim-treesitter/nvim-treesitter"
-    use "tree-sitter/tree-sitter-typescript"
+    -- use "tree-sitter/tree-sitter-typescript"
 
     -- telescope
     use {
@@ -32,7 +32,7 @@ packer.startup(function(use)
     use "nvim-telescope/telescope-live-grep-args.nvim"
 
     -- sidebar file tree
-    use "scrooloose/nerdtree"
+    use "nvim-tree/nvim-tree.lua"
 
     -- .editorconfig file support
     use "editorconfig/editorconfig-vim"
@@ -48,12 +48,9 @@ packer.startup(function(use)
 
     -- more lsp stuff
     use {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
-
-    -- ruby lsp
-    -- use "Shopify/ruby-lsp"
 
     -- themey stuff
     use "nvim-lualine/lualine.nvim"
@@ -63,10 +60,10 @@ packer.startup(function(use)
     use "EdenEast/nightfox.nvim"
 
     -- integration with typescript-language-server
-    use "jose-elias-alvarez/typescript.nvim"
+    -- use "jose-elias-alvarez/typescript.nvim"
 
     -- icons for nerdtree
-    use "ryanoasis/vim-devicons"
+    use "nvim-tree/nvim-web-devicons"
 
     -- completion (setup in completion.lua)
     use "hrsh7th/nvim-cmp"
@@ -74,6 +71,7 @@ packer.startup(function(use)
     use "hrsh7th/vim-vsnip"
     use "hrsh7th/cmp-vsnip"
 
-    -- copilot
     use "github/copilot.vim"
+
+    use "rust-lang/rust.vim"
 end)
