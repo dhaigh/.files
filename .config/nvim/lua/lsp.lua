@@ -105,6 +105,11 @@ vim.lsp.config("ruby_lsp", {
 })
 vim.lsp.enable "ruby_lsp"
 
+vim.lsp.config("sorbet", {
+    cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "bundle", "exec", "srb", "tc", "--lsp" },
+})
+vim.lsp.enable "sorbet"
+
 vim.lsp.config("ts_ls", {
     cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "typescript-language-server", "--stdio" },
     single_file_support = false,
