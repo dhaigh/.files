@@ -62,6 +62,9 @@ vim.keymap.set("i", "<c-l>", '<c-o>"_dw')
 -- swap between files
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 
+-- preserve paste register when pasting over visual selection
+vim.keymap.set("v", "p", '"_dP')
+
 -- stop yanking my crank man
 vim.keymap.set({ "n", "v" }, "c", '"_c')
 vim.keymap.set({ "n", "v" }, "C", '"_C')
