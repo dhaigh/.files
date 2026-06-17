@@ -31,6 +31,7 @@ telescope.setup {
 
     extensions = {
         live_grep_args = {
+            additional_args = { "--hidden", "--glob=!.git/", "--glob=!sorbet/rbi/gems/", "--glob=!.yarn/releases/" },
             mappings = {
                 i = {
                     ["<c-p>"] = lga_actions.quote_prompt(),
@@ -75,6 +76,7 @@ telescope.setup {
 
         live_grep = {
             -- grep_open_files = true,
+            additional_args = { "--hidden", "--glob=!.git/", "--glob=!sorbet/rbi/gems/", "--glob=!.yarn/releases/" },
         },
     },
 }

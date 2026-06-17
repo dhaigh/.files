@@ -6,7 +6,7 @@ program = "/bin/zsh"
 args = ["-l"]
 
 [font.normal]
-family = "GabrieleRibbonFGNerdFont Nerd Font Light"
+family = "MartianMono Nerd Font Mono"
 
 [[keyboard.bindings]]
 chars = "\u001B."
