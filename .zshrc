@@ -151,7 +151,7 @@ function fkill() {
 
 alias b='bundle'
 alias s='yarn start'
-alias w='yarn wds'
+alias w='bin/shakapacker-dev-server'
 alias t='bin/rails test'
 alias c='bundle exec rails c'
 alias ser='RAILS_LOG_LEVEL=debug MODE=app bundle exec rails s -p 3000 -P tmp/pids/app.pid'
@@ -218,3 +218,5 @@ alias gemdir='cd $(gem environment gemdir)'
 
 export OPENAI_API_KEY=$(cat ~/.openai)
 eval "$(/Users/deco/.local/bin/mise activate zsh)"
+
+export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)
