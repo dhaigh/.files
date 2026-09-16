@@ -111,6 +111,7 @@ alias gc='git commit'
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gds='gd --staged'
+alias gdm='git diff master...'
 alias gf='git fetch'
 alias gl='git log'
 alias gm='git merge'
@@ -218,5 +219,3 @@ alias gemdir='cd $(gem environment gemdir)'
 
 export OPENAI_API_KEY=$(cat ~/.openai)
 eval "$(/Users/deco/.local/bin/mise activate zsh)"
-
-export GITHUB_PERSONAL_ACCESS_TOKEN=$(gh auth token)
