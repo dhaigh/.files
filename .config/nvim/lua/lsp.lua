@@ -6,8 +6,12 @@ vim.keymap.set("n", "gr", vim.lsp.buf.rename)
 vim.keymap.set("n", "ge", vim.lsp.buf.references)
 vim.keymap.set("n", "gy", vim.lsp.buf.type_definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "[a", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]a", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[a", function()
+    vim.diagnostic.jump { count = -1, float = true }
+end)
+vim.keymap.set("n", "]a", function()
+    vim.diagnostic.jump { count = 1, float = true }
+end)
 vim.keymap.set("n", "<leader>a", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 
@@ -22,7 +26,7 @@ null_ls.setup {
         null_ls.builtins.formatting.stylua,
     },
     on_attach = function(client, bufnr)
-        if client.supports_method "textDocument/formatting" then
+        if client:supports_method "textDocument/formatting" then
             local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
             vim.api.nvim_create_autocmd("BufWritePre", {
                 group = group,
