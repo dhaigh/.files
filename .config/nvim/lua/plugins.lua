@@ -74,4 +74,9 @@ packer.startup(function(use)
     use "github/copilot.vim"
 
     use "rust-lang/rust.vim"
+
+    use {
+        "https://github.com/mrcjkb/haskell-tools.nvim",
+        version = vim.version.range "^10",
+    }
 end)
