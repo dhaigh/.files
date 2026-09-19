@@ -76,7 +76,10 @@ packer.startup(function(use)
     use "rust-lang/rust.vim"
 
     use {
+        -- NOTE: packer has no lazy.nvim-style `version` key -- it only supports
+        -- tag/branch/commit/rev, so `version` was silently ignored and this
+        -- tracked `main`. `tag` is the real pin.
         "https://github.com/mrcjkb/haskell-tools.nvim",
-        version = vim.version.range "^10",
+        tag = "v10.0.1",
     }
 end)
