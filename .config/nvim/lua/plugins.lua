@@ -20,7 +20,13 @@ packer.startup(function(use)
     use "AndrewRadev/splitjoin.vim"
 
     -- better syntax highlighting, used by telescope
-    use "nvim-treesitter/nvim-treesitter"
+    use {
+        -- `main` is required for nvim 0.12; `master` is frozen at nvim 0.11.
+        -- Parsers must be kept in sync with the plugin via :TSUpdate.
+        "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        run = ":TSUpdate",
+    }
     -- use "tree-sitter/tree-sitter-typescript"
 
     -- telescope
