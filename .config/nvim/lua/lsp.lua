@@ -102,7 +102,6 @@ cmp.setup {
 
 --------------------------------------------------------------------------------
 -- jose-elias-alvarez/typescript.nvim
--- require("nvim-lsp-installer").setup {}
 -- https://docs.deno.com/runtime/getting_started/setup_your_environment/#neovim-0.6%2B-using-the-built-in-language-server
 vim.lsp.config("ruby_lsp", {
     cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "ruby-lsp" },
