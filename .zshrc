@@ -219,3 +219,5 @@ alias gemdir='cd $(gem environment gemdir)'
 
 export OPENAI_API_KEY=$(cat ~/.openai)
 eval "$(/Users/deco/.local/bin/mise activate zsh)"
+
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env" # ghcup-env

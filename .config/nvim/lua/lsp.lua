@@ -82,12 +82,14 @@ cmp.setup {
         documentation = cmp.config.window.bordered(),
     },
 
+    preselect = cmp.PreselectMode.None,
+
     mapping = cmp.mapping.preset.insert {
         -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
         -- ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm { select = true },
+        ["<CR>"] = cmp.mapping.confirm { select = false },
     },
 
     sources = cmp.config.sources({
@@ -105,6 +107,14 @@ cmp.setup {
 -- https://docs.deno.com/runtime/getting_started/setup_your_environment/#neovim-0.6%2B-using-the-built-in-language-server
 vim.lsp.config("ruby_lsp", {
     cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "ruby-lsp" },
+    init_options = {
+        addonSettings = {
+            -- Key must match Addon#name in ruby-lsp-rails.
+            ["Ruby LSP Rails"] = {
+                enablePendingMigrationsPrompt = false,
+            },
+        },
+    },
 })
 vim.lsp.enable "ruby_lsp"
 

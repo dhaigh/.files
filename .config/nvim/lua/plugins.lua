@@ -31,8 +31,10 @@ packer.startup(function(use)
 
     -- telescope
     use {
+        -- `master`, not the `0.1.x` tag line: 0.1.x's previewer highlights via
+        -- `nvim-treesitter.configs`/`parsers.ft_to_lang`, which the treesitter
+        -- `main` branch removed. `master` highlights through core treesitter.
         "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
         requires = { { "nvim-lua/plenary.nvim" } },
     }
     use "nvim-telescope/telescope-live-grep-args.nvim"
