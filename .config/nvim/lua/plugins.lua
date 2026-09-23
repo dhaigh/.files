@@ -82,28 +82,37 @@ packer.startup(function(use)
 
     use "rust-lang/rust.vim"
 
-    -- git change markers in the gutter
+    -- git change markers in the gutter, relative to master (like `git diff master...`)
     --   <leader>gt  toggle the markers on/off
-    --   <leader>gm  diff against the merge base with master (i.e. what your branch changed)
-    --   <leader>gi  diff against the index again (the default)
+    --   <leader>gm  re-resolve the merge base with master (after merging/rebasing master)
+    --   <leader>gi  diff against the index instead
     --   <leader>gd  vimdiff the current buffer against the current base
     --   ]c / [c     jump to next/previous hunk
     use {
         "lewis6991/gitsigns.nvim",
         config = function()
             local gs = require "gitsigns"
-            gs.setup()
 
-            -- merge base of master and HEAD for the repo containing the current buffer
-            local function merge_base()
+            -- merge base of master and HEAD, for the repo containing the current
+            -- buffer (or nvim's cwd if the buffer has no file). gitsigns needs a
+            -- single revision, so `master...` itself can't be used as the base.
+            local function merge_base(quiet)
                 local dir = vim.fn.expand "%:p:h"
+                if dir == "" then
+                    dir = vim.fn.getcwd()
+                end
                 local out = vim.fn.systemlist { "git", "-C", dir, "merge-base", "master", "HEAD" }
                 if vim.v.shell_error ~= 0 or out[1] == nil then
-                    vim.notify("gitsigns: could not find merge base with master", vim.log.levels.WARN)
+                    if not quiet then
+                        vim.notify("gitsigns: could not find merge base with master", vim.log.levels.WARN)
+                    end
                     return nil
                 end
                 return out[1]
             end
+
+            -- nil (index) if we're not in a repo or there's no master
+            gs.setup { base = merge_base(true) }
 
             vim.keymap.set("n", "<leader>gt", gs.toggle_signs)
             vim.keymap.set("n", "<leader>gm", function()
