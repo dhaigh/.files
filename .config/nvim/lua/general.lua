@@ -62,6 +62,22 @@ vim.keymap.set("i", "<c-l>", '<c-o>"_dw')
 -- swap between files
 vim.keymap.set("n", "<leader><leader>", "<c-^>")
 
+-- <c-g> shows file info as normal; a second <c-g> within 500ms
+-- copies the current file path to the system clipboard
+local last_ctrl_g = 0
+vim.keymap.set("n", "<c-g>", function()
+  local now = (vim.uv or vim.loop).now()
+  if now - last_ctrl_g < 500 then
+    local path = vim.fn.expand("%")
+    vim.fn.setreg("+", path)
+    vim.notify("copied: " .. path)
+    last_ctrl_g = 0
+  else
+    last_ctrl_g = now
+    vim.cmd.file() -- same output as builtin <c-g>
+  end
+end)
+
 -- preserve paste register when pasting over visual selection
 vim.keymap.set("v", "p", '"_dP')
 
