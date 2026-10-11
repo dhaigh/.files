@@ -1,7 +1,0 @@
-name: VB-yet
-root: ~/Code/vb/yet-another-visibuild-mono
-windows:
-    - vim:
-        panes:
-            - vim
-    - git:

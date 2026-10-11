@@ -1,7 +1,0 @@
-name: VB-main
-root: ~/Code/vb/visibuild-mono
-windows:
-    - vim:
-        panes:
-            - vim
-    - git:
