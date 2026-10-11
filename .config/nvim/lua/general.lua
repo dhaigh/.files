@@ -1,24 +1,22 @@
-local group = vim.api.nvim_create_augroup("reload lua config", {})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    pattern = { "**/.config/nvim/**/*.lua" },
-    group = group,
-    callback = function(opts)
-        vim.notify("Loaded " .. opts.file)
-        dofile(opts.file)
-    end,
-})
-
--- clear trailing whitespace, ensure one blank line at the end
--- autocmd BufWritePre * %s/\s\+$//e
-
 ----------------------------------------
--- basic config
+-- options
 ----------------------------------------
 
-vim.api.nvim_set_option("expandtab", true) -- <tab> produces spaces
-vim.api.nvim_set_option("softtabstop", 4)
-vim.api.nvim_set_option("shiftwidth", 4)
+vim.cmd "colorscheme duskfox"
+
+vim.opt.termguicolors = true -- 24-bit colour
+
+vim.opt.expandtab = true -- <tab> produces spaces
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
+vim.opt.clipboard = "unnamed" -- use system clipboard as unnamed register
+vim.opt.wrap = false
+vim.opt.mouse = ""
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.g.ftplugin_sql_omni_key = "<c-j>"
 
 ----------------------------------------
 -- key bindings
@@ -66,16 +64,16 @@ vim.keymap.set("n", "<leader><leader>", "<c-^>")
 -- copies the current file path to the system clipboard
 local last_ctrl_g = 0
 vim.keymap.set("n", "<c-g>", function()
-  local now = (vim.uv or vim.loop).now()
-  if now - last_ctrl_g < 500 then
-    local path = vim.fn.expand("%")
-    vim.fn.setreg("+", path)
-    vim.notify("copied: " .. path)
-    last_ctrl_g = 0
-  else
-    last_ctrl_g = now
-    vim.cmd.file() -- same output as builtin <c-g>
-  end
+    local now = (vim.uv or vim.loop).now()
+    if now - last_ctrl_g < 500 then
+        local path = vim.fn.expand "%"
+        vim.fn.setreg("+", path)
+        vim.notify("copied: " .. path)
+        last_ctrl_g = 0
+    else
+        last_ctrl_g = now
+        vim.cmd.file() -- same output as builtin <c-g>
+    end
 end)
 
 -- preserve paste register when pasting over visual selection
@@ -96,86 +94,33 @@ vim.keymap.set("i", "<leader>c", "console.log(")
 vim.keymap.set("i", "<leader>d", "debugger;<esc>")
 
 ----------------------------------------
--- plugins
-----------------------------------------
 -- commands
+----------------------------------------
+
 vim.cmd [[
     command! VR e ~/.config/nvim/lua/general.lua
     command! VL e ~/.config/nvim/lua/lsp.lua
     command! VT e ~/.tmux.conf
     command! VZ e ~/.zshrc
     command! QQ q!
+    command! QA qa!
     command! W w
     command! Wq wq
     command! WQ wq
-    command! R :LspRestart<cr>
+    command! LR lsp restart
+    command! LH checkhealth vim.lsp
 ]]
 
-vim.g.ftplugin_sql_omni_key = "<c-j>"
+----------------------------------------
+-- autocmds
+----------------------------------------
 
-vim.cmd [[
-    set clipboard=unnamed "use system clipboard as unnamed register
-    set nowrap
-
-    set mouse=
-    set number
-    set relativenumber
-]]
-
--- nvim-treesitter `main` branch. The old `master` branch is frozen for nvim 0.11
--- and crashes on 0.12 (its query predicates still assume a treesitter match is a
--- single node rather than a list), which tears down the highlighter and kills all
--- highlighting. `main` has no `configs` module: parsers and queries are installed
--- into `install_dir`, and highlighting comes from Neovim core.
-require("nvim-treesitter").setup {}
-
-local ts_parsers = {
-    "bash", "diff", "dockerfile", "embedded_template", "git_config", "gitcommit",
-    "gitignore", "haskell", "ini", "javascript", "json", "json5", "lua",
-    "markdown", "markdown_inline", "mermaid", "pem", "python", "ruby", "scss",
-    "sql", "toml", "tsx", "typescript", "vim", "vimdoc", "xml", "yaml",
-}
-
--- Async, and a no-op for parsers that are already installed.
-require("nvim-treesitter").install(ts_parsers)
-
--- `main` does not enable highlighting itself; core does, per buffer.
--- pcall since not every filetype we open has a parser installed.
-vim.api.nvim_create_autocmd("FileType", {
-    group = vim.api.nvim_create_augroup("TreesitterHighlight", { clear = true }),
-    callback = function()
-        pcall(vim.treesitter.start)
+-- re-source nvim config files on save
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "**/.config/nvim/**/*.lua" },
+    group = vim.api.nvim_create_augroup("reload lua config", {}),
+    callback = function(opts)
+        vim.notify("Loaded " .. opts.file)
+        dofile(opts.file)
     end,
 })
-
--- nvim-tree setup
---------------------------------------------------------
-
-vim.keymap.set("n", "<leader>r", ":NvimTreeFindFile<cr>")
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- optionally enable 24-bit colour
-vim.opt.termguicolors = true
-
--- OR setup with some options
-require("nvim-tree").setup {
-    sort = {
-        sorter = "case_sensitive",
-    },
-    view = {
-        width = 50,
-    },
-    renderer = {
-        group_empty = true,
-    },
-    filters = {
-        dotfiles = false,
-        git_ignored = false,
-    },
-    update_focused_file = {
-        enable = true,
-        update_root = true,
-    },
-}

@@ -7,7 +7,7 @@ local action_state = require "telescope.actions.state"
 -- https://github.com/nvim-telescope/telescope.nvim/issues/416#issuecomment-841273053
 local function fzf_multi_select(prompt_bufnr)
     local picker = action_state.get_current_picker(prompt_bufnr)
-    local num_selections = table.getn(picker:get_multi_selection())
+    local num_selections = #picker:get_multi_selection()
 
     if num_selections > 1 then
         actions.send_selected_to_qflist(prompt_bufnr)
@@ -96,6 +96,3 @@ vim.keymap.set("n", "<c-t>", builtin.find_files)
 vim.keymap.set("n", "<c-space>", builtin.buffers)
 vim.keymap.set("n", "<leader>fh", builtin.buffers)
 vim.keymap.set("n", "<leader>ff", telescope.extensions.live_grep_args.live_grep_args)
-
--- local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
--- parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }

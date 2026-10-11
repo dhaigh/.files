@@ -15,30 +15,8 @@ end)
 vim.keymap.set("n", "<leader>a", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>x", vim.lsp.buf.signature_help)
 
-local null_ls = require "null-ls"
-local cmp = require "cmp"
-
 --------------------------------------------------------------------------------
--- https://github.com/nvimtools/none-ls.nvim
-null_ls.setup {
-    debug = true,
-    sources = {
-        null_ls.builtins.formatting.stylua,
-    },
-    on_attach = function(client, bufnr)
-        if client:supports_method "textDocument/formatting" then
-            local group = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = group,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format { bufnr = bufnr }
-                end,
-            })
-        end
-    end,
-}
-
+-- rust
 vim.lsp.config("rust_analyzer", {
     cmd = { "rust-analyzer" },
     filetypes = { "rust" },
@@ -68,43 +46,7 @@ vim.lsp.config("rust_analyzer", {
 vim.lsp.enable "rust_analyzer"
 
 --------------------------------------------------------------------------------
--- https://github.com/hrsh7th/nvim-cmp
-cmp.setup {
-    snippet = {
-        -- REQUIRED - you must specify a snippet engine
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-        end,
-    },
-
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
-
-    preselect = cmp.PreselectMode.None,
-
-    mapping = cmp.mapping.preset.insert {
-        -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        -- ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm { select = false },
-    },
-
-    sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "vsnip" },
-    }, {
-        { name = "buffer" },
-    }),
-}
-
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
--- jose-elias-alvarez/typescript.nvim
--- https://docs.deno.com/runtime/getting_started/setup_your_environment/#neovim-0.6%2B-using-the-built-in-language-server
+-- ruby
 vim.lsp.config("ruby_lsp", {
     cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "ruby-lsp" },
     init_options = {
@@ -123,45 +65,20 @@ vim.lsp.config("sorbet", {
 })
 vim.lsp.enable "sorbet"
 
+--------------------------------------------------------------------------------
+-- typescript
 vim.lsp.config("ts_ls", {
     cmd = { "/Users/deco/.local/bin/mise", "exec", "--", "typescript-language-server", "--stdio" },
     single_file_support = false,
+    before_init = function(params, config)
+        -- TS 7 projects alias "typescript" to the @typescript/typescript6 shim, which
+        -- has no tsserver.js; the real TS 6 server lives in @typescript/old.
+        local tsserver = (config.root_dir or "") .. "/node_modules/@typescript/old/lib/tsserver.js"
+        if vim.uv.fs_stat(tsserver) then
+            params.initializationOptions = vim.tbl_deep_extend("force", params.initializationOptions or {}, {
+                tsserver = { path = tsserver },
+            })
+        end
+    end,
 })
 vim.lsp.enable "ts_ls"
-
--- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
--- nvim_lsp["tsserver"].setup {
---     -- cmd = { "yarn", "typescript-language-server", "--stdio" },
---     capabilities = capabilities,
---     on_attach = function(client, bufnr)
---         -- if denols is running, disable tsserver for this buffer
---     end,
--- }
-
--- local status, ts = pcall(require, "nvim-treesitter.configs")
--- if not status then
---     return
--- end
-
--- ts.setup {
---     highlight = {
---         additional_vim_regex_highlighting = true,
---         custom_captures = {},
---         disable = {},
---         enable = false,
---         loaded = true,
---     },
---     indent = {
---         enable = true,
---         disable = {},
---     },
---     ensure_installed = {
---         "tsx",
---     },
--- }
-
--- nvim_lsp.ts_ls.setup {
---     on_attach = on_attach,
---     root_dir = nvim_lsp.util.root_pattern "package.json",
---     single_file_support = false,
--- }
