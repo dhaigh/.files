@@ -35,8 +35,10 @@ export TERM=xterm-256color
 export EDITOR=nvim
 export GIT_EDITOR=nvim
 
+bindkey -v
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^k' kill-line
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^?' backward-delete-char
@@ -181,7 +183,7 @@ alias mcs='cd ~/Code/vb/visibuild-native'
 alias dk='docker kill $(docker ps -q)'
 
 function cstf {
-    yarn test $1 --watch
+    yarn test $@ --watch
 }
 
 # Python virtualenv
